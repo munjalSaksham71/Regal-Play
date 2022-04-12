@@ -9,18 +9,21 @@ export const categories = [
   {
     _id: uuid(),
     categoryName: "Computer Programming",
+    imageUrl: '/Assets/computer_programming.jpeg',
     description:
       "Computer programming is the process of designing and building an executable computer program to accomplish a specific computing",
   },
   {
     _id: uuid(),
     categoryName: "Frontend Development",
+    imageUrl: '/Assets/image_frontend.webp',
     description:
       "Front-end web development, also known as client-side development is the practice of producing HTML, CSS and JavaScript for a website or Web Application",
   },
   {
     _id: uuid(),
     categoryName: "Backend Development",
+    imageUrl: '/Assets/backend_category.png',
     description:
       "Backend Development is also known as server-side development. It is everything that the users don't see and contains behind-the-scenes activities that occur when performing any action on a website.",
   },

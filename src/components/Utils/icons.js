@@ -1,4 +1,24 @@
-import { BiSearchAlt } from 'react-icons/bi';
-import { AiOutlineUser, AiFillPlayCircle  } from 'react-icons/ai';
+import { BiSearchAlt, BiStopwatch, BiListPlus } from "react-icons/bi";
+import {
+  AiOutlineUser,
+  AiFillPlayCircle,
+  AiFillHome,
+  AiOutlineHistory,
+  AiFillLike,
+} from "react-icons/ai";
+import { MdPlaylistAdd } from "react-icons/md";
 
-export{BiSearchAlt, AiOutlineUser, AiFillPlayCircle};
+import { BsFillPlayFill } from 'react-icons/bs'
+
+export {
+  BiSearchAlt,
+  BiStopwatch,
+  BiListPlus,
+  AiOutlineUser,
+  AiFillPlayCircle,
+  AiFillHome,
+  AiOutlineHistory,
+  AiFillLike,
+  MdPlaylistAdd,
+  BsFillPlayFill
+};

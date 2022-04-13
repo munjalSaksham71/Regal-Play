@@ -1,5 +1,6 @@
 import "./Categories.css";
 import { truncate } from "../Utils/helper";
+import { Link } from "react-router-dom";
 
 const Categories = ({ categories }) => {
   return (
@@ -15,12 +16,12 @@ const Categories = ({ categories }) => {
               {truncate(category.description, 100)}
             </div>
             <div className="card_buttons mt-2">
-              <div className="card_button">Watch Now </div>
+              <Link to="/videos" className="card_button text-decoration-none">Watch Now </Link>
             </div>
           </div>
         ))}
       </div>
-      <div className="watch_all_button mt-5"> Show All Videos </div>
+      <Link to="/videos" className="watch_all_button mt-5 text-decoration-none"> Show All Videos </Link>
     </div>
   );
 };

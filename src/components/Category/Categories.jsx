@@ -1,4 +1,3 @@
-import { AiFillPlayCircle } from "../Utils/icons";
 import "./Categories.css";
 import { truncate } from "../Utils/helper";
 

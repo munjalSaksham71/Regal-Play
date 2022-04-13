@@ -1,0 +1,49 @@
+.app_header {
+    background-color: var(--background-a);
+    color: var(--text-primary);
+    padding: 3vh 2vh;
+}
+
+.search_bar {
+    margin-left: 25rem;
+}
+
+.search-input {
+    width: 20rem;
+    background-color: var(--background-b);
+    color: var(--text-primary);
+    border: none;
+}
+
+.icon-container {
+    padding: 8px 8px;
+    background: var(--text-disabled);
+}
+
+.icon-container:hover {
+    cursor: pointer;
+}
+
+.icon {
+    width: 24px;
+    height: 24px;
+    border: none;
+    background: var(--text-disabled);
+}
+
+.icon_user {
+    width: 24px;
+    height: 24px;
+    border: none;
+}
+
+.user_profile {
+    margin-left: auto;
+    margin-top: 6px;
+}
+
+@media screen and (max-width: 1085px) {
+    .search_bar{
+        display: none;
+    }
+}

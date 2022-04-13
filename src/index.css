@@ -1,13 +1,35 @@
-body {
+@import url('https://regalUI.netlify.app/styles.css');
+@import url('https://fonts.googleapis.com/css2?family=Cantarell:ital@1&family=Montserrat:wght@300;400;500;600;700&family=Roboto:wght@300;400;500&display=swap');
+
+:root {
+  --background-a: #212121;
+  --background-b: #181818;
+  --text-primary: #fff;
+  --text-secondary: #aaa;
+  --text-disabled: #717171; 
+}
+
+* {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
+  font-family:'Montserrat', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background: var(--background-a);
+  color: var(--text-primary);
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+
+.flex-row {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.flex-column {
+  display: flex;
+  flex-direction: column;
 }

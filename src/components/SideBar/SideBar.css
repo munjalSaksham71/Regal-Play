@@ -18,3 +18,27 @@
     background: var(--text-secondary);
     cursor: pointer;
 }
+
+.filter-item {
+    background: var(--background-b);
+    gap: 10px;
+    text-decoration: none;
+}
+
+.clear_btn {
+    background: var(--text-secondary);
+    color: var(--background-b);
+    margin-left: auto;
+    padding: 6px 8px;
+    height: 20px;
+    margin-top: 6px;
+}
+
+.clear_btn:hover{
+    cursor: pointer;
+}
+
+.filter_title {
+    background: var(--background-b);
+    gap: 10px;
+}

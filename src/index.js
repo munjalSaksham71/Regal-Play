@@ -5,6 +5,7 @@ import App from "./App";
 import { makeServer } from "./server";
 import { VideoContextProvider } from "./context/index";
 import { BrowserRouter } from "react-router-dom";
+import { FilterContextProvider } from "./context/filter-context";
 
 // Call make Server
 makeServer();
@@ -12,7 +13,9 @@ makeServer();
 ReactDOM.render(
   <BrowserRouter>
     <VideoContextProvider>
-      <App />
+      <FilterContextProvider>
+        <App />
+      </FilterContextProvider>
     </VideoContextProvider>
   </BrowserRouter>,
   document.getElementById("root")

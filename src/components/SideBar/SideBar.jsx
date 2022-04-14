@@ -8,9 +8,13 @@ import {
   AiOutlineUser,
 } from "../Utils/icons";
 import { Link } from "react-router-dom";
-
+import { useFilter } from "../../context/index";
 
 const SideBar = () => {
+  const {
+    filterState: { byCategory },
+    filterDispatch,
+  } = useFilter();
   return (
     <div className="sidebar flex-column pt-3">
       <Link to="/" className="list_item flex-row p-3">
@@ -28,7 +32,57 @@ const SideBar = () => {
       </Link>
       <Link to="/myPlaylists" className="list_item flex-row  p-3">
         <MdPlaylistAdd /> My Playlist
-      </Link> <hr className="mt-2" />
+      </Link>
+      <hr className="mt-2" />
+      <div className="flex-column filter-item">
+        <div className="flex-row filter_title">
+        <h2 className="heading3 filter_title pl-3 pt-2">Filter</h2>
+        <div className="clear_btn" onClick={() => filterDispatch({type: 'CLEAR_ALL'}) }>Clear All</div>
+        </div>
+        <label className="flex-row list_item  pl-3 pt-2">
+          <input
+            className="mr-1"
+            type="checkbox"
+            checked={byCategory.includes("Computer Programming")}
+            onClick={() =>
+              filterDispatch({
+                type: "BY_CATEGORY",
+                payload: "Computer Programming",
+              })
+            }
+          />
+          Programming
+        </label>
+        <label className="flex-row list_item  pl-3 pt-2">
+          <input
+            className="mr-1"
+            type="checkbox"
+            checked={byCategory.includes("Frontend Development")}
+            onClick={() =>
+              filterDispatch({
+                type: "BY_CATEGORY",
+                payload: "Frontend Development",
+              })
+            }
+          />
+          Frontend
+        </label>
+        <label className="flex-row list_item  pl-3 pt-2">
+          <input
+            className="mr-1"
+            type="checkbox"
+            checked={byCategory.includes("Backend Development")}
+            onClick={() =>
+              filterDispatch({
+                type: "BY_CATEGORY",
+                payload: "Backend Development",
+              })
+            }
+          />
+          Backend
+        </label>
+      </div>
+      <hr className="mt-2" />
       <Link to="/myPlaylists" className="list_item flex-row  p-3">
         <AiOutlineUser /> User Profile
       </Link>

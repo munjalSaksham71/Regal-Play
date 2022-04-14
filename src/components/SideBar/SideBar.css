@@ -1,0 +1,20 @@
+.sidebar {
+    display: block;
+    position: fixed;
+    width: 15rem;
+    height: 90vh;
+    left: 0;
+    top: 5rem;
+    background-color: var(--background-b);
+}
+
+.list_item {
+    background: var(--background-b);
+    gap: 10px;
+    text-decoration: none;
+}
+
+.list_item:hover {
+    background: var(--text-secondary);
+    cursor: pointer;
+}

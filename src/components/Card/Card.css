@@ -1,0 +1,28 @@
+.video_card {
+    width: 17rem;
+    gap: 10px;
+    margin: 10px;
+}
+
+.video_card:hover{
+    cursor: pointer;
+}
+
+.card_image {
+    height: 11rem;
+    width: 17rem;
+}
+
+.card_icon {
+    background: var(--primary);
+}
+
+.video_title {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.watchlist_icon {
+    background: var(--secondary);
+}

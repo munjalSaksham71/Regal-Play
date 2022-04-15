@@ -1,11 +1,8 @@
 import "./App.css";
 import Header from "./components/Header/Header";
-import LandingPage from "./Screen/LandingPage/LandingPage";
+import { LandingPage, VideoListing, LoginScreen, SignupScreen }from "./Screen/index";
 import { Routes, Route } from "react-router-dom";
-import VideoListing from "./Screen/VideoListing/VideoListing";
 import MockMan from "mockman-js";
-import LoginScreen from "./Screen/LoginScreen/LoginScreen";
-import SignupScreen from "./Screen/SignupScreen/SignupScreen";
 
 function App() {
   return (

@@ -30,4 +30,4 @@ const LandingPage = () => {
     )
 }
 
-export default LandingPage
+export { LandingPage }

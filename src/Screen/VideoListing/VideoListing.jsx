@@ -41,4 +41,4 @@ const VideoListing = () => {
   );
 };
 
-export default VideoListing;
+export { VideoListing };

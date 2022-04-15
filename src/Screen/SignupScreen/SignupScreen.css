@@ -9,7 +9,7 @@
  
 button, input {
     background: var(--text-primary);
-    color: var(--background-a);
+    color: var(--background-primary);
 }
 
 .signup-button {

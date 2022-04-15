@@ -78,4 +78,4 @@ const SignupScreen = () => {
   );
 };
 
-export default SignupScreen;
+export { SignupScreen };

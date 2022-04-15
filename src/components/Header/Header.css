@@ -1,5 +1,5 @@
 .app_header {
-    background-color: var(--background-a);
+    background-color: var(--background-primary);
     color: var(--text-primary);
     padding: 3vh 2vh;
 }
@@ -10,7 +10,7 @@
 
 .search-input {
     width: 20rem;
-    background-color: var(--background-b);
+    background-color: var(--background-secondary);
     color: var(--text-primary);
     border: none;
 }

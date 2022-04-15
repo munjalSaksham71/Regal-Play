@@ -78,4 +78,4 @@ const LoginScreen = () => {
   );
 };
 
-export default LoginScreen;
+export { LoginScreen };

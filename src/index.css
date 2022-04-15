@@ -2,8 +2,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Cantarell:ital@1&family=Montserrat:wght@300;400;500;600;700&family=Roboto:wght@300;400;500&display=swap');
 
 :root {
-  --background-a: #212121;
-  --background-b: #181818;
+  --background-primary: #212121;
+  --background-secondary: #181818;
   --text-primary: #fff;
   --text-secondary: #aaa;
   --text-disabled: #717171; 
@@ -14,7 +14,7 @@
   font-family:'Montserrat', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: var(--background-a);
+  background: var(--background-primary);
   color: var(--text-primary);
 }
 

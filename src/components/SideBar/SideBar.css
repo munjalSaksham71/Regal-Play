@@ -5,11 +5,11 @@
     height: 90vh;
     left: 0;
     top: 5rem;
-    background-color: var(--background-b);
+    background-color: var(--background-secondary);
 }
 
 .list_item {
-    background: var(--background-b);
+    background: var(--background-secondary);
     gap: 10px;
     text-decoration: none;
 }
@@ -20,14 +20,14 @@
 }
 
 .filter-item {
-    background: var(--background-b);
+    background: var(--background-secondary);
     gap: 10px;
     text-decoration: none;
 }
 
 .clear_btn {
     background: var(--text-secondary);
-    color: var(--background-b);
+    color: var(--background-secondary);
     margin-left: auto;
     padding: 6px 8px;
     height: 20px;
@@ -39,6 +39,6 @@
 }
 
 .filter_title {
-    background: var(--background-b);
+    background: var(--background-secondary);
     gap: 10px;
 }

@@ -1,0 +1,28 @@
+.align-center {
+    justify-content: center;
+    align-items: center;
+}
+
+.form-height {
+    width: 35%;
+}
+ 
+input {
+    background: var(--text-primary);
+    color: var(--background-a);
+}
+
+.login-button {
+    width: 40%;
+    margin-left: -7rem;
+    background: var(--text-primary);
+    color: var(--background-a);
+}
+
+.guest-login-button {
+    width: 70%;
+    margin-left: 10px;
+    color: var(--text-primary);
+    background: var(--background-a);
+    border: 1px solid var(--text-primary);
+}

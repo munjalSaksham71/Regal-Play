@@ -40,6 +40,11 @@
 .user_profile {
     margin-left: auto;
     margin-top: 6px;
+    text-decoration: none;
+}
+
+.logout_button:hover {
+    cursor: pointer;
 }
 
 @media screen and (max-width: 1085px) {

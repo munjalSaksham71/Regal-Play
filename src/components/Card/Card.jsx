@@ -7,7 +7,11 @@ const Card = ({ video }) => {
   const { watchlistState : {watchListVideos}, watchlistDispatch } = useWatchlist()
 
   const addToWatchlist  = async () => {
-    await watchlistDispatch({type: 'ADD_TO_WATCHLIST', payload: video});
+    try {
+      await watchlistDispatch({type: 'ADD_TO_WATCHLIST', payload: video}); 
+    } catch (error) {
+      alert(error);
+    }
   }
 
   return (

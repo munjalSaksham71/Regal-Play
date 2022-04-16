@@ -1,0 +1,8 @@
+.remove_watchlist-icon {
+    background-color: var(--danger);
+    color: var(--white);
+}
+
+.page-title {
+    margin: auto;
+}

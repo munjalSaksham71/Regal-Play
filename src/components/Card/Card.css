@@ -26,3 +26,14 @@
 .watchlist_icon {
     background: var(--secondary);
 }
+
+.watchlist-btn:disabled,
+watchlist-btn[disabled]{
+  border: 1px solid #999999;
+  background: #cccccc;
+  color: #666666;
+}
+
+.watchlist-btn:disabled:hover {
+    cursor: not-allowed;
+}

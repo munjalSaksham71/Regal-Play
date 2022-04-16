@@ -1,8 +1,19 @@
 import { BiListPlus } from "react-icons/bi";
 import { BsFillPlayFill } from "react-icons/bs";
+import { useWatchlist } from "../../context";
 import "./Card.css";
 
 const Card = ({ video }) => {
+  const { watchlistState : {watchListVideos}, watchlistDispatch } = useWatchlist()
+
+  const addToWatchlist  = async () => {
+    try {
+      await watchlistDispatch({type: 'ADD_TO_WATCHLIST', payload: video}); 
+    } catch (error) {
+      alert(error);
+    }
+  }
+
   return (
     <div className="video_card flex-column">
       <img className="card_image" src={video.thumbnail} />
@@ -10,7 +21,7 @@ const Card = ({ video }) => {
       <div className="video_author">{video.creator}</div>
       <div className="video_buttons flex-row">
         <button className="btn btn-primary"><BsFillPlayFill className="card_icon" /> Play Now</button>
-        <button className= "ml-1 btn btn-secondary"><BiListPlus className="watchlist_icon" /> Watchlist</button>
+        <button disabled={watchListVideos.includes(video)} onClick={addToWatchlist} className= "ml-1 watchlist-btn btn btn-secondary"><BiListPlus className="watchlist_icon" />Watchlist</button>
       </div>
     </div>
   );

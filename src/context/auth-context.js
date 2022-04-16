@@ -5,7 +5,7 @@ const AuthContext = createContext();
 
 const useAuth = () => useContext(AuthContext);
 
-const token = localStorage.getItem("encodedToken");
+const token = localStorage.getItem("token");
 
 const AuthContextProvider = ({ children }) => {
   const [isUserLoggedIn, setIsUserLoggedIn] = useState(token ? true : false);
@@ -23,14 +23,14 @@ const AuthContextProvider = ({ children }) => {
   const signupUser = async (email, password) => {
     const {data, status} = await signup(email, password);
     if(status === 201){
-      localStorage.setItem("encodedToken", data.encodedToken);
+      localStorage.setItem("token", JSON.stringify(data.encodedToken));
       setUser(data.encodedToken);
       setIsUserLoggedIn(true);
     }
   }
 
   const logoutUser = async () => {
-    localStorage.removeItem("encodedToken");
+    localStorage.removeItem("token");
     setIsUserLoggedIn(false);
     setUser(null);
   }

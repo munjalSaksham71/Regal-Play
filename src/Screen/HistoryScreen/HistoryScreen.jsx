@@ -1,31 +1,31 @@
 import { BiListPlus } from "react-icons/bi";
 import { BsFillPlayFill } from "react-icons/bs";
 import SideBar from "../../components/SideBar/SideBar";
-import { useWatchlist } from "../../context";
-import './WatchLater.css'
+import { useHistory } from "../../context";
+import "../WatchLaterScreen/WatchLater.css";
 
-const WatchLaterScreen = () => {
+const HistoryScreen = () => {
   const {
-    watchlistState: { watchListVideos },
-    watchlistDispatch,
-  } = useWatchlist();
+    historyState: { historyVideos },
+    historyDispatch,
+  } = useHistory();
 
   const removeHandler = async (id) => {
-    await watchlistDispatch({ type: "REMOVE_FROM_WATCHLIST", payload: id });
+    await historyDispatch({ type: "REMOVE_FROM_HISTORY", payload: id });
   };
-  
+
 
   return (
     <div className="flex-row">
       <SideBar />
       <div className="main_container flex-column">
-      <div className="heading2 center page-title"> Watch Later </div>
-        {watchListVideos && (
+        <div className="heading2 center page-title"> History </div>
+        {historyVideos && (
           <div className="cards flex-row">
-            {watchListVideos.length === 0 && (
+            {historyVideos.length === 0 && (
               <h2 className="ml-5 mt-4 heading3"> No Videos Found!!! </h2>
             )}
-            {watchListVideos.map((video) => (
+            {historyVideos.map((video) => (
               <div className="video_card flex-column">
                 <img className="card_image" src={video.thumbnail} />
                 <div className="video_title">{video.title}</div>
@@ -51,4 +51,4 @@ const WatchLaterScreen = () => {
   );
 };
 
-export { WatchLaterScreen };
+export { HistoryScreen };

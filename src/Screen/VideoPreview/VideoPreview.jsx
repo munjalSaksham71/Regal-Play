@@ -59,7 +59,7 @@ const VideoPreview = () => {
           url={video.video_link}
         />
         <div className="action-icons mt-3 flex-row">
-          {likedVideos.includes(video) ? (
+          {likedVideos.some((v) => v._id === video._id) ? (
             <div
               onClick={() =>
                 likeDispatch({ type: "REMOVE_FROM_LIKED", payload: video._id })
@@ -77,7 +77,7 @@ const VideoPreview = () => {
             </div>
           )}
           <div>Add to Playlist</div>
-          {watchListVideos.includes(video) ? (
+          {watchListVideos.some((v) => v._id === video._id) ? (
             <div
             className="btn btn-error"
               onClick={() =>

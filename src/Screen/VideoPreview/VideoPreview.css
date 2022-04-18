@@ -1,0 +1,16 @@
+.video-desc {
+    width: 15rem;
+}
+
+.video_player{
+    margin-left: 18rem;
+}
+
+.content-title {
+    font-weight: 700;
+}
+
+.action-icons {
+    gap: 20px;
+    margin-left: 3rem;
+}

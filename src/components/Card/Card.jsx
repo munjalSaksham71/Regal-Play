@@ -1,5 +1,6 @@
 import { BiListPlus } from "react-icons/bi";
 import { BsFillPlayFill } from "react-icons/bs";
+import { Link } from "react-router-dom";
 import { useWatchlist } from "../../context";
 import "./Card.css";
 
@@ -20,7 +21,7 @@ const Card = ({ video }) => {
       <div className="video_title">{video.title}</div>
       <div className="video_author">{video.creator}</div>
       <div className="video_buttons flex-row">
-        <button className="btn btn-primary"><BsFillPlayFill className="card_icon" /> Play Now</button>
+        <Link to={`/video/${video._id}`} className="btn btn-primary"><BsFillPlayFill className="card_icon" /> Play Now</Link>
         <button disabled={watchListVideos.includes(video)} onClick={addToWatchlist} className= "ml-1 watchlist-btn btn btn-secondary"><BiListPlus className="watchlist_icon" />Watchlist</button>
       </div>
     </div>

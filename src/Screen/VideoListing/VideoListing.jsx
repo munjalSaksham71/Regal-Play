@@ -29,7 +29,7 @@ const VideoListing = () => {
 
   return (
     <div className="flex-row">
-      <SideBar />
+      <SideBar filterShown={true} />
       <div className="main_container flex-row">
         {loading && <div>Loading...</div>}
         {error && <div>{error}</div>}

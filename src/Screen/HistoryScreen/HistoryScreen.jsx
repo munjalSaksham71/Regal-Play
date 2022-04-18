@@ -14,7 +14,6 @@ const HistoryScreen = () => {
     await historyDispatch({ type: "REMOVE_FROM_HISTORY", payload: id });
   };
 
-  console.log(historyVideos);
 
   return (
     <div className="flex-row">

@@ -27,7 +27,7 @@ const CreatePlaylist = ({ playlistVideo }) => {
       playlistDispatch({ type: "CREATE_PLAYLIST", payload: data.playlists });
       setPlaylistData({ title: "", description: "" });
     } catch (error) {
-      alert(error);
+      console.log(error);
     }
   };
 
@@ -36,7 +36,7 @@ const CreatePlaylist = ({ playlistVideo }) => {
       const data = await deletePlaylist(id);
       playlistDispatch({ type: "DELETE_PLAYLIST", payload: data.playlists });
     } catch (error) {
-        alert(error);
+        console.log(error);
     }
   };
 
@@ -45,7 +45,7 @@ const CreatePlaylist = ({ playlistVideo }) => {
       const data = await addVideoToPlaylist(id, video);
       playlistDispatch({ type: "ADD_TO_PLAYLIST", payload: data.playlist });
     } catch (error) {
-      alert(error);
+      console.log(error);
     }
   };
 
@@ -57,7 +57,7 @@ const CreatePlaylist = ({ playlistVideo }) => {
         payload: data.playlist,
       });
     } catch (error) {
-      alert(error);
+      console.log(error);
     }
   };
 

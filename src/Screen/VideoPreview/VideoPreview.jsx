@@ -33,7 +33,7 @@ const VideoPreview = () => {
         const { data } = await axios.get(`/api/video/${id}`);
         setVideo(data.video);
       } catch (error) {
-        alert(error);
+        console.log(error);
       }
     })();
   }, []);
@@ -44,7 +44,7 @@ const VideoPreview = () => {
         !isEmptyObject(video) &&
           (await historyDispatch({ type: "ADD_TO_HISTORY", payload: video }));
       } catch (error) {
-        alert(error);
+        console.log(error);
       }
     })();
   }, [video]);

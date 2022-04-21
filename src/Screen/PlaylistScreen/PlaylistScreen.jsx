@@ -20,7 +20,7 @@ const PlaylistScreen = () => {
         payload: data.playlist,
       });
     } catch (error) {
-      alert(error);
+      console.log(error);
     }
   };
 

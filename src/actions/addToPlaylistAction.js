@@ -11,7 +11,7 @@ export const getPlaylist = async () => {
     });
     return data;
   } catch (error) {
-    alert(error);
+    console.log(error);
   }
 };
 
@@ -28,7 +28,7 @@ export const createNewPlaylist = async (playlist) => {
     );
     return data;
   } catch (error) {
-    alert(error);
+    console.log(error);
   }
 };
 
@@ -41,7 +41,7 @@ export const deletePlaylist = async (id) => {
     });
     return data;
   } catch (error) {
-    alert(error);
+    console.log(error);
   }
 };
 
@@ -60,7 +60,7 @@ export const addVideoToPlaylist = async (playlistId, video) => {
     );
     return data;
   } catch (error) {
-    alert(error);
+    console.log(error);
   }
 };
 
@@ -76,6 +76,6 @@ export const deleteVideoFromPlaylist = async (playlistId, videoId) => {
     );
     return data;
   } catch (error) {
-    alert(error);
+    console.log(error);
   }
 };

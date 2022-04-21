@@ -11,7 +11,7 @@ const Card = ({ video }) => {
     try {
       await watchlistDispatch({type: 'ADD_TO_WATCHLIST', payload: video}); 
     } catch (error) {
-      alert(error);
+      console.log(error);
     }
   }
 

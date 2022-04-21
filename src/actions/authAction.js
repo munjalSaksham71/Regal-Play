@@ -36,6 +36,6 @@ export const signup = async (email, password) => {
     );
     return response;
   } catch (error) {
-    alert(error.message);
+    console.log(error.message);
   }
 };

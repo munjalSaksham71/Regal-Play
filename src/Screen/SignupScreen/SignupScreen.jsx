@@ -17,10 +17,10 @@ const SignupScreen = () => {
             try {
                 await signupUser(email, password);
             } catch (error) {
-                alert(error.message)
+                console.log(error.message)
             }
         } else {
-            alert("Password and confirm password fields didnt match.")
+            console.log("Password and confirm password fields didnt match.")
         }
     }
 

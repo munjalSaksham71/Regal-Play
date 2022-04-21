@@ -6,3 +6,4 @@ export { WatchLaterScreen } from './WatchLaterScreen/WatchLater';
 export { VideoPreview } from './VideoPreview/VideoPreview';
 export { LikesScreen } from './LikesScreen/LikesScreen';
 export { HistoryScreen } from './HistoryScreen/HistoryScreen';
+export { PlaylistScreen } from './PlaylistScreen/PlaylistScreen'

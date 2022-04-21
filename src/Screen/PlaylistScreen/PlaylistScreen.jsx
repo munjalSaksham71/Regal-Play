@@ -10,7 +10,6 @@ const PlaylistScreen = () => {
     playlistState: { playlists },
     playlistDispatch,
   } = usePlaylist();
-  console.log(playlists);
 
   const removeHandler = async (playlist_id, video_id) => {
     try {

@@ -12,7 +12,7 @@ const LoginScreen = () => {
 
     const submitHandler = async (e) => {
         e.preventDefault();
-        if(email === "" || password === ""){
+        if(!email || !password ){
           console.log("Please enter both the fields");
         }
         try {

@@ -2,25 +2,28 @@ import { BiListPlus } from "react-icons/bi";
 import { BsFillPlayFill } from "react-icons/bs";
 import SideBar from "../../components/SideBar/SideBar";
 import { useLikes } from "../../context";
-import '../WatchLaterScreen/WatchLater.css'
+import "../WatchLaterScreen/WatchLater.css";
 
 const LikesScreen = () => {
-  
-  const {likeState: { likedVideos }, likeDispatch} = useLikes();
-
+  const {
+    likeState: { likedVideos },
+    likeDispatch,
+  } = useLikes();
 
   const removeHandler = async (id) => {
     await likeDispatch({ type: "REMOVE_FROM_LIKED", payload: id });
   };
-  
+
   return (
-    <div className="flex-row">
-      <SideBar />
+    <div>
+      <SideBar pageWrapId={"page-wrap"} outerContainerId={"outer-container"} />
       <div className="main_container flex-column">
-      <div className="heading2 center page-title"> Liked Videos </div>
+        <div className="heading2 center page-title"> Liked Videos </div>
         {likedVideos && (
           <div className="cards flex-row">
-            {likedVideos.length === 0 && <h2 className="ml-5 mt-4 heading3"> No Liked Videos!!! </h2>}
+            {likedVideos.length === 0 && (
+              <h2 className="ml-5 mt-4 heading3"> No Liked Videos!!! </h2>
+            )}
             {likedVideos.map((video) => (
               <div className="video_card flex-column">
                 <img className="card_image" src={video.thumbnail} />

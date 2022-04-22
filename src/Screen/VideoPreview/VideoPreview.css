@@ -1,16 +1,35 @@
 .video-desc {
-    width: 15rem;
+  width: 15rem;
+  padding-left: 5rem;
 }
 
-.video_player{
-    margin-left: 18rem;
+.video_player {
+  width: 50rem;
+  height: 34rem;
 }
 
 .content-title {
-    font-weight: 700;
+  font-weight: 700;
 }
 
 .action-icons {
-    gap: 20px;
-    margin-left: 3rem;
+  gap: 20px;
+  margin-left: 3rem;
+}
+
+.icon {
+  height: 24px;
+  width: 24px;
+  background-color: var(--background-primary);
+}
+
+.icon:hover {
+  cursor: pointer;
+}
+
+@media screen and (max-width: 815px) {
+  .video_player {
+    width: 20rem;
+    height: 20rem;
+  }
 }

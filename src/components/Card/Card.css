@@ -27,6 +27,10 @@
     background: var(--secondary);
 }
 
+.play_btn {
+    text-decoration: none;
+}
+
 .watchlist-btn:disabled,
 watchlist-btn[disabled]{
   border: 1px solid #999999;

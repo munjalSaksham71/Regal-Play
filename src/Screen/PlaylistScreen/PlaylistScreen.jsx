@@ -24,8 +24,8 @@ const PlaylistScreen = () => {
   };
 
   return (
-    <div className="flex-row">
-      <SideBar />
+    <div>
+      <SideBar pageWrapId={'page-wrap'} outerContainerId={'outer-container'} />
       <div className="main_container flex-column">
         <div className="heading2 center page-title"> My Playlists </div>
         {playlists.length === 0 && (

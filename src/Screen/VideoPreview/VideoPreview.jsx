@@ -5,9 +5,9 @@ import SideBar from "../../components/SideBar/SideBar";
 import { useParams } from "react-router-dom";
 import "./VideoPreview.css";
 import { AiFillLike, AiOutlineLike } from "../../components/Utils/icons";
-import { useHistory, useLikes, useWatchlist } from "../../context";
-import { isEmptyObject } from '../../components/Utils/helper';
-
+import { useHistory, useLikes, usePlaylist, useWatchlist } from "../../context";
+import { isEmptyObject } from "../../components/Utils/helper";
+import CreatePlaylist from "../../components/CreatePlaylist/CreatePlaylist";
 
 const VideoPreview = () => {
   const [video, setVideo] = useState({});
@@ -23,9 +23,9 @@ const VideoPreview = () => {
     watchlistDispatch,
   } = useWatchlist();
 
-  const {
-    historyDispatch
-  } = useHistory();
+  const { historyDispatch } = useHistory();
+
+  const { isModalOpen, setIsModalOpen } = usePlaylist();
 
   useEffect(() => {
     (async () => {
@@ -33,7 +33,7 @@ const VideoPreview = () => {
         const { data } = await axios.get(`/api/video/${id}`);
         setVideo(data.video);
       } catch (error) {
-        alert(error);
+        console.log(error);
       }
     })();
   }, []);
@@ -41,12 +41,17 @@ const VideoPreview = () => {
   useEffect(() => {
     (async () => {
       try {
-        !isEmptyObject(video) && await historyDispatch({type: 'ADD_TO_HISTORY', payload: video })
+        !isEmptyObject(video) &&
+          (await historyDispatch({ type: "ADD_TO_HISTORY", payload: video }));
       } catch (error) {
-        alert(error);
+        console.log(error);
       }
-    })()
-  }, [video])
+    })();
+  }, [video]);
+
+  const playlistHandler = () => {
+    setIsModalOpen(true);
+  };
 
   return (
     <div className="flex-row">
@@ -76,10 +81,10 @@ const VideoPreview = () => {
               <AiOutlineLike />
             </div>
           )}
-          <div>Add to Playlist</div>
+          <div onClick={playlistHandler}>Add to Playlist</div>
           {watchListVideos.some((v) => v._id === video._id) ? (
             <div
-            className="btn btn-error"
+              className="btn btn-error"
               onClick={() =>
                 watchlistDispatch({
                   type: "REMOVE_FROM_WATCHLIST",
@@ -91,7 +96,7 @@ const VideoPreview = () => {
             </div>
           ) : (
             <div
-            className="btn btn-primary"
+              className="btn btn-primary"
               onClick={() =>
                 watchlistDispatch({ type: "ADD_TO_WATCHLIST", payload: video })
               }
@@ -110,6 +115,7 @@ const VideoPreview = () => {
         <div className="content-title mt-3">Category: </div>
         <div className="mt-1">{video.category}</div> <hr className="mt-2" />
       </div>
+      {isModalOpen && <CreatePlaylist playlistVideo={video} />}
     </div>
   );
 };

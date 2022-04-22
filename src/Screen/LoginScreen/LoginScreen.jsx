@@ -12,13 +12,13 @@ const LoginScreen = () => {
 
     const submitHandler = async (e) => {
         e.preventDefault();
-        if(email === "" || password === ""){
-          alert("Please enter both the fields");
+        if(!email || !password ){
+          console.log("Please enter both the fields");
         }
         try {
             await loginUser(email, password);
         } catch (error) {
-            alert(error.message)
+            console.log(error.message)
         }
     }
 
@@ -27,7 +27,7 @@ const LoginScreen = () => {
       try {
           await loginUser("adarshbalika@gmail.com", "adarshBalika123");
       } catch (error) {
-          alert("Something went wrong.")
+          console.log("Something went wrong.")
       }
     }
 

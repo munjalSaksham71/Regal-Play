@@ -9,6 +9,7 @@ import {
   VideoPreview,
   LikesScreen,
   HistoryScreen,
+  PlaylistScreen,
 } from "./Screen/index";
 import { Routes, Route } from "react-router-dom";
 import MockMan from "mockman-js";
@@ -26,6 +27,7 @@ function App() {
         <Route path="/watch-later" element={<WatchLaterScreen />} />
         <Route path="/likes" element={<LikesScreen />} />
         <Route path="/history" element={<HistoryScreen />} />
+        <Route path="/myPlaylists" element={<PlaylistScreen />} />
         <Route path="/mock" element={<MockMan />} />
       </Routes>
     </div>

@@ -4,7 +4,7 @@ import ReactPlayer from "react-player";
 import SideBar from "../../components/SideBar/SideBar";
 import { useParams } from "react-router-dom";
 import "./VideoPreview.css";
-import { AiFillLike, AiOutlineLike } from "../../components/Utils/icons";
+import { AiFillLike, AiOutlineLike , MdPlaylistAdd, BiStopwatch } from "../../components/Utils/icons";
 import { useHistory, useLikes, usePlaylist, useWatchlist } from "../../context";
 import { isEmptyObject } from "../../components/Utils/helper";
 import CreatePlaylist from "../../components/CreatePlaylist/CreatePlaylist";
@@ -55,12 +55,12 @@ const VideoPreview = () => {
 
   return (
     <div className="flex-row">
-      <SideBar />
+      <SideBar pageWrapId={"page-wrap"} outerContainerId={"outer-container"} />
       <div className="video_player flex-column">
         <ReactPlayer
           className="ml-5 mt-5"
-          height={"30rem"}
-          width={"50rem"}
+          height={"100%"}
+          width={"100%"}
           url={video.video_link}
         />
         <div className="action-icons mt-3 flex-row">
@@ -70,7 +70,7 @@ const VideoPreview = () => {
                 likeDispatch({ type: "REMOVE_FROM_LIKED", payload: video._id })
               }
             >
-              <AiFillLike />
+              <AiFillLike className="icon"/>
             </div>
           ) : (
             <div
@@ -78,13 +78,13 @@ const VideoPreview = () => {
                 likeDispatch({ type: "ADD_TO_LIKED", payload: video })
               }
             >
-              <AiOutlineLike />
+              <AiOutlineLike  className="icon"/>
             </div>
           )}
-          <div onClick={playlistHandler}>Add to Playlist</div>
+          <div onClick={playlistHandler}><MdPlaylistAdd className="icon" /></div>
           {watchListVideos.some((v) => v._id === video._id) ? (
             <div
-              className="btn btn-error"
+              className="btn btn-error ml-auto"
               onClick={() =>
                 watchlistDispatch({
                   type: "REMOVE_FROM_WATCHLIST",
@@ -96,12 +96,13 @@ const VideoPreview = () => {
             </div>
           ) : (
             <div
-              className="btn btn-primary"
+              className="btn btn-primary ml-auto"
+              aria-disabled={true}
               onClick={() =>
                 watchlistDispatch({ type: "ADD_TO_WATCHLIST", payload: video })
               }
             >
-              Add to Watch Later
+              Add to watchlist
             </div>
           )}
         </div>

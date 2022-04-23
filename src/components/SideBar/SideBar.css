@@ -1,44 +1,84 @@
-.sidebar {
-    display: block;
-    position: fixed;
-    width: 15rem;
-    height: 90vh;
-    left: 0;
-    top: 5rem;
-    background-color: var(--background-secondary);
-}
-
 .list_item {
-    background: var(--background-secondary);
-    gap: 10px;
-    text-decoration: none;
+  gap: 10px;
+  text-decoration: none;
 }
 
 .list_item:hover {
-    background: var(--text-secondary);
-    cursor: pointer;
+  background: var(--text-secondary);
+  cursor: pointer;
 }
 
 .filter-item {
-    background: var(--background-secondary);
-    gap: 10px;
-    text-decoration: none;
+  gap: 10px;
+  text-decoration: none;
 }
 
 .clear_btn {
-    background: var(--text-secondary);
-    color: var(--background-secondary);
-    margin-left: auto;
-    padding: 6px 8px;
-    height: 20px;
-    margin-top: 6px;
+  background: var(--text-secondary);
+  color: var(--background-secondary);
+  margin-left: auto;
+  padding: 6px 8px;
+  height: 20px;
+  margin-top: 6px;
 }
 
-.clear_btn:hover{
-    cursor: pointer;
+.clear_btn:hover {
+  cursor: pointer;
 }
 
 .filter_title {
-    background: var(--background-secondary);
-    gap: 10px;
+  gap: 10px;
+}
+
+.bm-burger-button {
+  position: fixed;
+  width: 36px;
+  height: 30px;
+  left: 36px;
+  top: 36px;
+}
+
+.bm-burger-bars {
+  background: #bdc3c7;
+  ;
+}
+
+.bm-burger-bars-hover {
+  cursor: pointer;
+}
+
+.bm-cross-button {
+  height: 24px;
+  width: 24px;
+}
+
+.bm-cross {
+  background: #bdc3c7;
+}
+
+.bm-menu-wrap {
+  position: fixed;
+  height: 90vh;
+  width: 15rem;
+}
+
+.bm-menu {
+  font-size: 1.15em;
+}
+
+.bm-morph-shape {
+  fill: #373a47;
+}
+
+.bm-item-list {
+  color: #b8b7ad;
+  padding: 0.8em;
+}
+
+.bm-item {
+  display: inline-block;
+}
+
+.bm-overlay {
+  background: rgba(0, 0, 0, 0.3);
 }

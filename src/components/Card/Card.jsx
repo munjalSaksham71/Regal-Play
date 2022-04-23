@@ -21,7 +21,7 @@ const Card = ({ video }) => {
       <div className="video_title">{video.title}</div>
       <div className="video_author">{video.creator}</div>
       <div className="video_buttons flex-row">
-        <Link to={`/video/${video._id}`} className="btn btn-primary"><BsFillPlayFill className="card_icon" /> Play Now</Link>
+        <Link to={`/video/${video._id}`} className="btn btn-primary play_btn"><BsFillPlayFill className="card_icon" /> Play Now</Link>
         <button disabled={watchListVideos.includes(video)} onClick={addToWatchlist} className= "ml-1 watchlist-btn btn btn-secondary"><BiListPlus className="watchlist_icon" />Watchlist</button>
       </div>
     </div>

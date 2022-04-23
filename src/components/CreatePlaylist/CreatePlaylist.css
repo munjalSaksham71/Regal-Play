@@ -50,3 +50,17 @@ input {
 .gap {
     gap: 12px;
 }
+
+@media only screen and (max-width: 990px) {
+    .modal_content{
+        width: 18rem;
+        top: 20%;
+        left: 20%;
+    }
+    .modal_title{
+        width: 16rem;
+    }
+    .modal_desc {
+        width: 16rem;
+    }
+}

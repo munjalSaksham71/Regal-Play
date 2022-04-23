@@ -7,7 +7,7 @@
     width: 35%;
 }
  
-button, input {
+button, .input-container {
     background: var(--text-primary);
     color: var(--background-primary);
 }
@@ -15,4 +15,20 @@ button, input {
 .signup-button {
     width: 40%;
     margin-left: -5rem;
+}
+
+
+@media only screen and (max-width: 900px) {
+    .input-container{
+        width: 50vw ;
+    }
+
+    .signup-button {
+        margin-left: 3rem;
+        margin-bottom: 1rem;
+    }
+
+    .form-height{
+        width: 50%;
+    }
 }

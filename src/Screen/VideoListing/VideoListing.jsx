@@ -9,7 +9,7 @@ const VideoListing = () => {
   } = useVideo();
 
   const {
-    filterState: { byCategory }
+    filterState: { byCategory },
   } = useFilter();
 
   const filterVideos = () => {
@@ -28,8 +28,8 @@ const VideoListing = () => {
   const filteredVideosList = filterVideos();
 
   return (
-    <div className="flex-row">
-      <SideBar filterShown={true} />
+    <div>
+      <SideBar filterShown={true} pageWrapId={"page-wrap"} outerContainerId={"outer-container"} />
       <div className="main_container flex-row">
         {loading && <div>Loading...</div>}
         {error && <div>{error}</div>}

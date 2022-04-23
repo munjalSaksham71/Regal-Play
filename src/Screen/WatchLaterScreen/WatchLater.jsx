@@ -2,7 +2,7 @@ import { BiListPlus } from "react-icons/bi";
 import { BsFillPlayFill } from "react-icons/bs";
 import SideBar from "../../components/SideBar/SideBar";
 import { useWatchlist } from "../../context";
-import './WatchLater.css'
+import "./WatchLater.css";
 
 const WatchLaterScreen = () => {
   const {
@@ -13,13 +13,16 @@ const WatchLaterScreen = () => {
   const removeHandler = async (id) => {
     await watchlistDispatch({ type: "REMOVE_FROM_WATCHLIST", payload: id });
   };
-  
 
   return (
-    <div className="flex-row">
-      <SideBar />
+    <div>
+      <SideBar
+        pageWrapId={"page-wrap"}
+        outerContainerId={"outer-container"}
+        filterShown={true}
+      />
       <div className="main_container flex-column">
-      <div className="heading2 center page-title"> Watch Later </div>
+        <div className="heading2 center page-title"> Watch Later </div>
         {watchListVideos && (
           <div className="cards flex-row">
             {watchListVideos.length === 0 && (

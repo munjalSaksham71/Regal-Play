@@ -40,7 +40,7 @@ const LoginScreen = () => {
     return (
     <div className="flex-column align-center">
       <form className="flex-column form-height">
-        <div className="heading1 mt-3">LOGIN USER</div>
+        <div className="heading1 mt-3">LOGIN</div>
         <label className="mt-5" htmlFor="email">
           Email Address
         </label>

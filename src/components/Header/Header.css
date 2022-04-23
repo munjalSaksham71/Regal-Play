@@ -4,8 +4,10 @@
     padding: 3vh 2vh;
 }
 
-.search_bar {
-    margin-left: 25rem;
+.brand_name {
+    margin-left: 2.5rem;
+    margin-top: 6px;
+    text-decoration: none;
 }
 
 .search-input {
@@ -45,10 +47,4 @@
 
 .logout_button:hover {
     cursor: pointer;
-}
-
-@media screen and (max-width: 1085px) {
-    .search_bar{
-        display: none;
-    }
 }

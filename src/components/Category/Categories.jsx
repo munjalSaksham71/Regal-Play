@@ -1,8 +1,10 @@
 import "./Categories.css";
 import { truncate } from "../Utils/helper";
 import { Link } from "react-router-dom";
+import { useFilter } from "../../context/index";
 
 const Categories = ({ categories }) => {
+  const { filterDispatch } = useFilter();
   return (
     <div className="flex-column">
       <div className="cards flex-row">
@@ -16,12 +18,26 @@ const Categories = ({ categories }) => {
               {truncate(category.description, 100)}
             </div>
             <div className="card_buttons mt-2">
-              <Link to="/videos" className="card_button text-decoration-none">Watch Now </Link>
+              <Link
+                onClick={() =>
+                  filterDispatch({
+                    type: "BY_CATEGORY",
+                    payload: `${category.categoryName}`,
+                  })
+                }
+                to="/videos"
+                className="card_button text-decoration-none"
+              >
+                Watch Now
+              </Link>
             </div>
           </div>
         ))}
       </div>
-      <Link to="/videos" className="watch_all_button mt-5 text-decoration-none"> Show All Videos </Link>
+      <Link to="/videos" className="watch_all_button mt-5 text-decoration-none">
+        {" "}
+        Show All Videos{" "}
+      </Link>
     </div>
   );
 };

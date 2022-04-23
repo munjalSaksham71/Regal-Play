@@ -38,7 +38,7 @@ const SignupScreen = () => {
           Email Address
         </label>
         <input
-          className="mt-1 p-1"
+          className="mt-1 p-1 input-container"
           type="email"
           placeholder="Enter your email"
           value={email}
@@ -48,7 +48,7 @@ const SignupScreen = () => {
           Password
         </label>
         <input
-          className="mt-1 p-1"
+          className="mt-1 p-1 input-container"
           type="password"
           placeholder="Enter your password"
           value={password}
@@ -58,7 +58,7 @@ const SignupScreen = () => {
           Confirm Password
         </label>
         <input
-          className="mt-1 p-1"
+          className="mt-1 p-1 input-container"
           type="password"
           placeholder="Enter your password again"
           value={confirmPassword}

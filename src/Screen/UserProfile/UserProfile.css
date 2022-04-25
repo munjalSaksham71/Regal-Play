@@ -1,0 +1,21 @@
+.profile_img {
+  height: 10rem;
+  width: 10rem;
+}
+
+.profile-content {
+  margin: 5rem;
+}
+
+.profile-info{
+    margin: auto;
+}
+
+@media only screen and (max-width: 610px) {
+  .profile_img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 9rem;
+  }
+}

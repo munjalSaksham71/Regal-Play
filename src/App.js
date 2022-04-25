@@ -10,9 +10,11 @@ import {
   LikesScreen,
   HistoryScreen,
   PlaylistScreen,
+  UserProfile,
 } from "./Screen/index";
 import { Routes, Route } from "react-router-dom";
 import MockMan from "mockman-js";
+import PrivateRoute from "./components/Utils/privateRoute";
 
 function App() {
   return (
@@ -24,10 +26,11 @@ function App() {
         <Route path="/video/:id" element={<VideoPreview />} />
         <Route path="/login" element={<LoginScreen />} />
         <Route path="/signup" element={<SignupScreen />} />
-        <Route path="/watch-later" element={<WatchLaterScreen />} />
-        <Route path="/likes" element={<LikesScreen />} />
-        <Route path="/history" element={<HistoryScreen />} />
-        <Route path="/myPlaylists" element={<PlaylistScreen />} />
+        <Route path="/watch-later" element={<PrivateRoute><WatchLaterScreen /></PrivateRoute>} />
+        <Route path="/likes" element={<PrivateRoute><LikesScreen /></PrivateRoute>} />
+        <Route path="/history" element={<PrivateRoute> <HistoryScreen /> </PrivateRoute>} />
+        <Route path="/myPlaylists" element={<PrivateRoute><PlaylistScreen /></PrivateRoute>} />
+        <Route path="/myprofile" element={<PrivateRoute><UserProfile /></PrivateRoute>} />
         <Route path="/mock" element={<MockMan />} />
       </Routes>
     </div>

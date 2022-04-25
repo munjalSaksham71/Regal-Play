@@ -92,7 +92,7 @@ const SideBar = ({ filterShown = false }) => {
             <hr className="mt-2" />
           </div>
         )}
-        <Link to="/myPlaylists" className="list_item flex-row  p-3">
+        <Link to="/myprofile" className="list_item flex-row  p-3">
           <AiOutlineUser /> User Profile
         </Link>
       </div>

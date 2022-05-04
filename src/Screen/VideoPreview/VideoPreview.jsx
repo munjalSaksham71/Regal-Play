@@ -8,6 +8,9 @@ import { AiFillLike, AiOutlineLike , MdPlaylistAdd, BiStopwatch } from "../../co
 import { useHistory, useLikes, usePlaylist, useWatchlist } from "../../context";
 import { isEmptyObject } from "../../components/Utils/helper";
 import CreatePlaylist from "../../components/CreatePlaylist/CreatePlaylist";
+import { addToHistory } from "../../actions/historyAction";
+import { addToWatchlater, deleteFromWatchlater } from "../../actions/watchLaterAction";
+import { addToLiked, deleteFromLiked } from "../../actions/likeVideoAction";
 
 const VideoPreview = () => {
   const [video, setVideo] = useState({});
@@ -32,26 +35,37 @@ const VideoPreview = () => {
       try {
         const { data } = await axios.get(`/api/video/${id}`);
         setVideo(data.video);
+        const response  = await addToHistory(data.video);
+        historyDispatch({ type: "ADD_TO_HISTORY", payload: response.data.history });
       } catch (error) {
         console.log(error);
       }
     })();
   }, []);
 
-  useEffect(() => {
-    (async () => {
-      try {
-        !isEmptyObject(video) &&
-          (await historyDispatch({ type: "ADD_TO_HISTORY", payload: video }));
-      } catch (error) {
-        console.log(error);
-      }
-    })();
-  }, [video]);
-
   const playlistHandler = () => {
     setIsModalOpen(true);
   };
+
+  const removeFromWatchlistHandler = async (id) => {
+    const { data } = await deleteFromWatchlater(id);
+    watchlistDispatch({type: 'REMOVE_FROM_WATCHLIST', payload: data.watchlater})
+  }
+
+  const addToWatchlistHandler = async (video) => {
+    const { data } = await addToWatchlater(video);
+    watchlistDispatch({type: 'ADD_TO_WATCHLIST', payload: data.watchlater})
+  }
+
+  const removeFromLikedVideo = async (id) => {
+    const { data } = await deleteFromLiked(id);
+    likeDispatch({type: 'REMOVE_FROM_LIKED', payload: data.likes})
+  }
+
+  const addToLikedVideo = async (video) => {
+    const { data } = await addToLiked(video);
+    likeDispatch({type: 'ADD_TO_LIKED', payload: data.likes})
+  }
 
   return (
     <div className="flex-row">
@@ -67,7 +81,7 @@ const VideoPreview = () => {
           {likedVideos.some((v) => v._id === video._id) ? (
             <div
               onClick={() =>
-                likeDispatch({ type: "REMOVE_FROM_LIKED", payload: video._id })
+                removeFromLikedVideo(video._id)
               }
             >
               <AiFillLike className="icon"/>
@@ -75,7 +89,7 @@ const VideoPreview = () => {
           ) : (
             <div
               onClick={() =>
-                likeDispatch({ type: "ADD_TO_LIKED", payload: video })
+                addToLikedVideo(video)
               }
             >
               <AiOutlineLike  className="icon"/>
@@ -85,12 +99,7 @@ const VideoPreview = () => {
           {watchListVideos.some((v) => v._id === video._id) ? (
             <div
               className="btn btn-error ml-auto"
-              onClick={() =>
-                watchlistDispatch({
-                  type: "REMOVE_FROM_WATCHLIST",
-                  payload: video._id,
-                })
-              }
+              onClick={() => removeFromWatchlistHandler(video._id)}
             >
               Remove From Watchlist
             </div>
@@ -98,9 +107,7 @@ const VideoPreview = () => {
             <div
               className="btn btn-primary ml-auto"
               aria-disabled={true}
-              onClick={() =>
-                watchlistDispatch({ type: "ADD_TO_WATCHLIST", payload: video })
-              }
+              onClick={() => addToWatchlistHandler(video)}
             >
               Add to watchlist
             </div>

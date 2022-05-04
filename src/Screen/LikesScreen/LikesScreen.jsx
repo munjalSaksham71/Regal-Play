@@ -1,5 +1,6 @@
 import { BiListPlus } from "react-icons/bi";
 import { BsFillPlayFill } from "react-icons/bs";
+import { deleteFromLiked } from "../../actions/likeVideoAction";
 import SideBar from "../../components/SideBar/SideBar";
 import { useLikes } from "../../context";
 import "../WatchLaterScreen/WatchLater.css";
@@ -11,7 +12,8 @@ const LikesScreen = () => {
   } = useLikes();
 
   const removeHandler = async (id) => {
-    await likeDispatch({ type: "REMOVE_FROM_LIKED", payload: id });
+    const { data } = await deleteFromLiked(id);
+    likeDispatch({type: 'REMOVE_FROM_LIKED', payload: data.likes})
   };
 
   return (
@@ -25,7 +27,7 @@ const LikesScreen = () => {
               <h2 className="ml-5 mt-4 heading3"> No Liked Videos!!! </h2>
             )}
             {likedVideos.map((video) => (
-              <div className="video_card flex-column">
+              <div key={video._id} className="video_card flex-column">
                 <img className="card_image" src={video.thumbnail} />
                 <div className="video_title">{video.title}</div>
                 <div className="video_author">{video.creator}</div>

@@ -5,14 +5,9 @@ export const initialLikedState = {
 export const likeReducer = (state, action) => {
   switch (action.type) {
     case "ADD_TO_LIKED":
-      return { ...state, likedVideos: state.likedVideos.concat(action.payload) };
+      return { ...state, likedVideos: action.payload};
     case "REMOVE_FROM_LIKED":
-      return {
-        ...state,
-        likedVideos: [
-          ...state.likedVideos.filter((item) => item.id !== action.payload)
-        ],
-      };
+      return { ...state, likedVideos: action.payload};
     default:
       return state;
   }

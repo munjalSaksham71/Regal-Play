@@ -1,8 +1,8 @@
 import axios from "axios";
 
-const token = localStorage.getItem("token");
 
 export const getPlaylist = async () => {
+  const token = localStorage.getItem("token");
   try {
     const { data } = await axios.get("/api/user/playlists", {
       headers: {
@@ -16,6 +16,7 @@ export const getPlaylist = async () => {
 };
 
 export const createNewPlaylist = async (playlist) => {
+  const token = localStorage.getItem("token");
   try {
     const { data } = await axios.post(
       "/api/user/playlists",
@@ -33,6 +34,7 @@ export const createNewPlaylist = async (playlist) => {
 };
 
 export const deletePlaylist = async (id) => {
+  const token = localStorage.getItem("token");
   try {
     const { data } = await axios.delete(`/api/user/playlists/${id}`, {
       headers: {
@@ -46,6 +48,7 @@ export const deletePlaylist = async (id) => {
 };
 
 export const addVideoToPlaylist = async (playlistId, video) => {
+  const token = localStorage.getItem("token");
   try {
     const { data } = await axios.post(
       `/api/user/playlists/${playlistId}`,
@@ -65,6 +68,7 @@ export const addVideoToPlaylist = async (playlistId, video) => {
 };
 
 export const deleteVideoFromPlaylist = async (playlistId, videoId) => {
+  const token = localStorage.getItem("token");
   try {
     const { data } = await axios.delete(
       `/api/user/playlists/${playlistId}/${videoId}`,

@@ -1,8 +1,8 @@
 import axios from "axios";
 
-const token = localStorage.getItem("token");
 
 export const getLiked = async () => {
+  const token = localStorage.getItem("token");
   try {
     const response = await axios.get("/api/user/likes", {
       headers: {
@@ -16,6 +16,7 @@ export const getLiked = async () => {
 };
 
 export const addToLiked = async (video) => {
+  const token = localStorage.getItem("token");
   try {
     const response = await axios.post(
       "/api/user/likes",
@@ -33,6 +34,7 @@ export const addToLiked = async (video) => {
 };
 
 export const deleteFromLiked = async (id) => {
+  const token = localStorage.getItem("token");
   try {
     const response = await axios.delete(`/api/user/likes/${id}`, {
       headers: {

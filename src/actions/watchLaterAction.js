@@ -1,8 +1,8 @@
 import axios from "axios";
 
-const token = localStorage.getItem("token");
 
 export const getWatchLater = async () => {
+  const token = localStorage.getItem("token");
   try {
     const response = await axios.get("/api/user/watchlater", {
       headers: {
@@ -16,6 +16,7 @@ export const getWatchLater = async () => {
 };
 
 export const addToWatchlater = async (video) => {
+  const token = localStorage.getItem("token");
   try {
     const response = await axios.post(
       "/api/user/watchlater",
@@ -33,6 +34,7 @@ export const addToWatchlater = async (video) => {
 };
 
 export const deleteFromWatchlater = async (id) => {
+  const token = localStorage.getItem("token");
   try {
     const response = await axios.delete(`/api/user/watchlater/${id}`, {
       headers: {

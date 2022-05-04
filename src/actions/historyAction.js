@@ -1,8 +1,7 @@
 import axios from "axios";
 
-const token = localStorage.getItem("token");
-
 export const getHistory = async () => {
+  const token = localStorage.getItem("token");
   try {
     const response  = await axios.get("/api/user/history", {
       headers: {
@@ -16,6 +15,7 @@ export const getHistory = async () => {
 };
 
 export const addToHistory = async (video) => {
+  const token = localStorage.getItem("token");
   try {
     const response  = await axios.post(
       "/api/user/history",
@@ -33,6 +33,7 @@ export const addToHistory = async (video) => {
 };
 
 export const deleteFromHistory = async (id) => {
+  const token = localStorage.getItem("token");
   try {
     const  response  = await axios.delete(`/api/user/history/${id}`, {
       headers: {
@@ -46,6 +47,7 @@ export const deleteFromHistory = async (id) => {
 };
 
 export const clearHistory = async () => {
+  const token = localStorage.getItem("token");
   try {
     const  response  = await axios.delete(`/api/user/history/all`, {
       headers: {

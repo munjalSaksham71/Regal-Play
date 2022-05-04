@@ -11,9 +11,8 @@ const HistoryScreen = () => {
     historyDispatch,
   } = useHistory();
 
-  const removeHandler = async (video) => {
-    console.log(video)
-    const data = await deleteFromHistory(video);
+  const removeHandler = async (id) => {
+    const {data} = await deleteFromHistory(id);
     await historyDispatch({ type: "REMOVE_FROM_HISTORY", payload: data.history });
   };
 
@@ -34,7 +33,7 @@ const HistoryScreen = () => {
               <h2 className="ml-5 mt-4 heading3"> No Videos Found!!! </h2>
             )}
             {historyVideos.map((video) => (
-              <div className="video_card flex-column">
+              <div key={video._id} className="video_card flex-column">
                 <img className="card_image" src={video.thumbnail} />
                 <div className="video_title">{video.title}</div>
                 <div className="video_author">{video.creator}</div>
@@ -43,7 +42,7 @@ const HistoryScreen = () => {
                     <BsFillPlayFill className="card_icon" /> Play Now
                   </button>
                   <button
-                    onClick={() => removeHandler(video)}
+                    onClick={() => removeHandler(video._id)}
                     className="ml-1 btn btn-error"
                   >
                     <BiListPlus className="remove_watchlist-icon" />

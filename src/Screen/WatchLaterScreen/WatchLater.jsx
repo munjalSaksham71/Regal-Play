@@ -2,6 +2,7 @@ import { BiListPlus } from "react-icons/bi";
 import { BsFillPlayFill } from "react-icons/bs";
 import SideBar from "../../components/SideBar/SideBar";
 import { useWatchlist } from "../../context";
+import { deleteFromWatchlater } from '../../actions/watchLaterAction'
 import "./WatchLater.css";
 
 const WatchLaterScreen = () => {
@@ -11,7 +12,8 @@ const WatchLaterScreen = () => {
   } = useWatchlist();
 
   const removeHandler = async (id) => {
-    await watchlistDispatch({ type: "REMOVE_FROM_WATCHLIST", payload: id });
+    const { data } = await deleteFromWatchlater(id);
+    watchlistDispatch({type: 'REMOVE_FROM_WATCHLIST', payload: data.watchlater})
   };
 
   return (
@@ -29,7 +31,7 @@ const WatchLaterScreen = () => {
               <h2 className="ml-5 mt-4 heading3"> No Videos Found!!! </h2>
             )}
             {watchListVideos.map((video) => (
-              <div className="video_card flex-column">
+              <div key={video._id} className="video_card flex-column">
                 <img className="card_image" src={video.thumbnail} />
                 <div className="video_title">{video.title}</div>
                 <div className="video_author">{video.creator}</div>

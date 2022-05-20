@@ -16,6 +16,15 @@ const SideBar = ({ filterShown = false }) => {
     filterState: { byCategory },
     filterDispatch,
   } = useFilter();
+
+  const filterHandler = (e, category) => {
+    if (e.target.checked) {
+      filterDispatch({ type: "BY_CATEGORY", payload: category });
+    } else {
+      filterDispatch({ type: "REMOVE_CATEGORY", payload: category });
+    }
+  };
+
   return (
     <Menu>
       <div className="sidebar flex-column pt-3">
@@ -52,12 +61,7 @@ const SideBar = ({ filterShown = false }) => {
                 className="mr-1"
                 type="checkbox"
                 checked={byCategory.includes("Computer Programming")}
-                onClick={() =>
-                  filterDispatch({
-                    type: "BY_CATEGORY",
-                    payload: "Computer Programming",
-                  })
-                }
+                onClick={(e) => filterHandler(e, "Computer Programming")}
               />
               Programming
             </label>
@@ -66,12 +70,7 @@ const SideBar = ({ filterShown = false }) => {
                 className="mr-1"
                 type="checkbox"
                 checked={byCategory.includes("Frontend Development")}
-                onClick={() =>
-                  filterDispatch({
-                    type: "BY_CATEGORY",
-                    payload: "Frontend Development",
-                  })
-                }
+                onClick={(e) => filterHandler(e, "Frontend Development")}
               />
               Frontend
             </label>
@@ -80,12 +79,7 @@ const SideBar = ({ filterShown = false }) => {
                 className="mr-1"
                 type="checkbox"
                 checked={byCategory.includes("Backend Development")}
-                onClick={() =>
-                  filterDispatch({
-                    type: "BY_CATEGORY",
-                    payload: "Backend Development",
-                  })
-                }
+                onClick={(e) => filterHandler(e, "Backend Development")}
               />
               Backend
             </label>

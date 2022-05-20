@@ -4,9 +4,8 @@ import ReactPlayer from "react-player";
 import SideBar from "../../components/SideBar/SideBar";
 import { useParams } from "react-router-dom";
 import "./VideoPreview.css";
-import { AiFillLike, AiOutlineLike , MdPlaylistAdd, BiStopwatch } from "../../components/Utils/icons";
+import { AiFillLike, AiOutlineLike , MdPlaylistAdd } from "../../components/Utils/icons";
 import { useHistory, useLikes, usePlaylist, useWatchlist } from "../../context";
-import { isEmptyObject } from "../../components/Utils/helper";
 import CreatePlaylist from "../../components/CreatePlaylist/CreatePlaylist";
 import { addToHistory } from "../../actions/historyAction";
 import { addToWatchlater, deleteFromWatchlater } from "../../actions/watchLaterAction";
@@ -26,7 +25,7 @@ const VideoPreview = () => {
     watchlistDispatch,
   } = useWatchlist();
 
-  const { historyDispatch } = useHistory();
+  const { historyDispatch, historyState: {historyVideos} } = useHistory();
 
   const { isModalOpen, setIsModalOpen } = usePlaylist();
 
@@ -35,8 +34,10 @@ const VideoPreview = () => {
       try {
         const { data } = await axios.get(`/api/video/${id}`);
         setVideo(data.video);
-        const response  = await addToHistory(data.video);
-        historyDispatch({ type: "ADD_TO_HISTORY", payload: response.data.history });
+        if(!historyVideos.includes(data.video)){
+          const response  = await addToHistory(data.video);
+          historyDispatch({ type: "ADD_TO_HISTORY", payload: response.data.history });
+        }
       } catch (error) {
         console.log(error);
       }

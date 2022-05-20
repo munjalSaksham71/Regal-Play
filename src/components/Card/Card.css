@@ -41,3 +41,8 @@ watchlist-btn[disabled]{
 .watchlist-btn:disabled:hover {
     cursor: not-allowed;
 }
+
+.watchlist-btn:disabled > .watchlist_icon {
+    background: #cccccc;
+    color: #666666;
+}

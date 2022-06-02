@@ -2,8 +2,7 @@ import { BiListPlus } from "react-icons/bi";
 import { BsFillPlayFill } from "react-icons/bs";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { AddToWatchLater, addToWatchlater } from "../../actions/watchLaterAction";
-import { useWatchlist } from "../../context";
+import { AddToWatchLater } from "../../actions/watchLaterAction";
 import "./Card.css";
 
 const Card = ({ video }) => {

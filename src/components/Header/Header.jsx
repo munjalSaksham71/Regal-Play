@@ -1,6 +1,5 @@
 import "./Header.css";
-import { BiSearchAlt, AiOutlineUser } from "../Utils/icons";
-import { useAuth } from "../../context/index";
+import { AiOutlineUser } from "../Utils/icons";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { Logout } from "../../slices/authSlice";

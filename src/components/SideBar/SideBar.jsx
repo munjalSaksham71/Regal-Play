@@ -8,7 +8,6 @@ import {
   AiOutlineUser,
 } from "../Utils/icons";
 import { Link } from "react-router-dom";
-import { useFilter } from "../../context/index";
 import { slide as Menu } from "react-burger-menu";
 import { useDispatch, useSelector } from "react-redux";
 import { addCategory, removeCategory, clearAllCategory } from '../../slices/filterSlice'

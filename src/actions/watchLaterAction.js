@@ -1,48 +1,50 @@
+import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-
-export const getWatchLater = async () => {
+export const GetWatchLater = createAsyncThunk("watchlater/get", async () => {
   const token = localStorage.getItem("token");
   try {
-    const response = await axios.get("/api/user/watchlater", {
+    const { data } = await axios.get("/api/user/watchlater", {
       headers: {
         authorization: token,
       },
     });
-    return response;
+    return data.watchlater;
   } catch (error) {
-    console.log(error);
+    console.error(error.response);
   }
-};
+});
 
-export const addToWatchlater = async (video) => {
-  const token = localStorage.getItem("token");
-  try {
-    const response = await axios.post(
-      "/api/user/watchlater",
-      { video },
-      {
+export const AddToWatchLater = createAsyncThunk(
+  "watchlater/addVideo", 
+  async ( video ) => {
+    const token = localStorage.getItem("token");
+    try {
+      const { data } = await axios.post("/api/user/watchlater", { video }, {
         headers: {
           authorization: token,
         },
-      }
-    );
-    return response;
-  } catch (error) {
-    console.log(error);
+      });
+      return data.watchlater;
+    } catch (error) {
+      console.error(error.response);
+    }
   }
-};
+)
 
-export const deleteFromWatchlater = async (id) => {
-  const token = localStorage.getItem("token");
-  try {
-    const response = await axios.delete(`/api/user/watchlater/${id}`, {
-      headers: {
-        authorization: token,
-      },
-    });
-    return response;
-  } catch (error) {
-    console.log(error);
+export const DeleteFromWatchlater = createAsyncThunk(
+  "watchlater/deleteVideo", 
+  async (id) => {
+    const token = localStorage.getItem("token");
+    try {
+      const { data } = await axios.delete(`/api/user/watchlater/${id}`, {
+        headers: {
+          authorization: token,
+        },
+      });
+      return data.watchlater;
+    } catch (error) {
+      console.error(error.response);
+    }
   }
-};
+)

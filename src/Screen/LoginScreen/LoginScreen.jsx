@@ -1,12 +1,15 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./LoginScreen.css";
-import { useAuth } from '../../context/index';
+import { useDispatch, useSelector } from "react-redux";
+import { Login } from "../../actions/authAction";
 
 const LoginScreen = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const { user, loginUser } = useAuth();
+
+    const dispatch = useDispatch();
+    const { user } = useSelector((state) => state.auth)
 
     const navigate = useNavigate()
 
@@ -16,7 +19,7 @@ const LoginScreen = () => {
           console.log("Please enter both the fields");
         }
         try {
-            await loginUser(email, password);
+            dispatch(Login({email, password}));
         } catch (error) {
             console.log(error.message)
         }
@@ -25,7 +28,7 @@ const LoginScreen = () => {
     const guestLoginHandler = async (e) => {
       e.preventDefault();
       try {
-          await loginUser("adarshbalika@gmail.com", "adarshBalika123");
+          dispatch(Login({ email: "adarshbalika@gmail.com", password: "adarshBalika123"}));
       } catch (error) {
           console.log("Something went wrong.")
       }

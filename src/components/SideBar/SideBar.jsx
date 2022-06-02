@@ -10,18 +10,19 @@ import {
 import { Link } from "react-router-dom";
 import { useFilter } from "../../context/index";
 import { slide as Menu } from "react-burger-menu";
+import { useDispatch, useSelector } from "react-redux";
+import { addCategory, removeCategory, clearAllCategory } from '../../slices/filterSlice'
 
 const SideBar = ({ filterShown = false }) => {
-  const {
-    filterState: { byCategory },
-    filterDispatch,
-  } = useFilter();
+  const { byCategory } = useSelector((state) => state.filter);
+  const dispatch = useDispatch();
+
 
   const filterHandler = (e, category) => {
     if (e.target.checked) {
-      filterDispatch({ type: "BY_CATEGORY", payload: category });
+      dispatch(addCategory(category))
     } else {
-      filterDispatch({ type: "REMOVE_CATEGORY", payload: category });
+      dispatch(removeCategory(category))
     }
   };
 
@@ -51,7 +52,7 @@ const SideBar = ({ filterShown = false }) => {
               <h2 className="heading3 filter_title pl-3 pt-2">Filter</h2>
               <div
                 className="clear_btn"
-                onClick={() => filterDispatch({ type: "CLEAR_ALL" })}
+                onClick={() => dispatch(clearAllCategory())}
               >
                 Clear All
               </div>

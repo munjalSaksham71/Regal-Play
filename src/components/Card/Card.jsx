@@ -1,24 +1,24 @@
 import { BiListPlus } from "react-icons/bi";
 import { BsFillPlayFill } from "react-icons/bs";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { addToWatchlater } from "../../actions/watchLaterAction";
+import { AddToWatchLater, addToWatchlater } from "../../actions/watchLaterAction";
 import { useWatchlist } from "../../context";
 import "./Card.css";
 
 const Card = ({ video }) => {
-  const {
-    watchlistState: { watchListVideos },
-    watchlistDispatch,
-  } = useWatchlist();
+  const dispatch = useDispatch();
 
-  const addToWatchlist = async () => {
+  const { watchListVideos } = useSelector((state) => state.watchlater)
+
+  const addToWatchlist = () => {
     try {
-      const { data } = await addToWatchlater(video);
-      watchlistDispatch({ type: "ADD_TO_WATCHLIST", payload: data.watchlater });
+      dispatch(AddToWatchLater(video))
+      console.log(video);
     } catch (error) {
-      console.error(error);
+      console.log(error.response)
     }
-  };
+  }
 
   return (
     <div className="video_card flex-column">

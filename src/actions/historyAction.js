@@ -1,61 +1,68 @@
+import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-export const getHistory = async () => {
+export const GetHistory = createAsyncThunk("history/get", async () => {
   const token = localStorage.getItem("token");
   try {
-    const response  = await axios.get("/api/user/history", {
+    const { data } = await axios.get("/api/user/history", {
       headers: {
         authorization: token,
       },
     });
-    return response;
+    return data.history;
   } catch (error) {
-    console.log(error);
+    console.error(error.response);
   }
-};
+});
 
-export const addToHistory = async (video) => {
-  const token = localStorage.getItem("token");
-  try {
-    const response  = await axios.post(
-      "/api/user/history",
-      { video },
-      {
+export const AddToHistory = createAsyncThunk(
+  "history/addVideo", 
+  async ( video ) => {
+    const token = localStorage.getItem("token");
+    try {
+      const { data } = await axios.post("/api/user/history", { video }, {
         headers: {
           authorization: token,
         },
-      }
-    );
-    return response;
-  } catch (error) {
-    console.log(error);
+      });
+      return data.history;
+    } catch (error) {
+      console.error(error.response);
+    }
   }
-};
+)
 
-export const deleteFromHistory = async (id) => {
-  const token = localStorage.getItem("token");
-  try {
-    const  response  = await axios.delete(`/api/user/history/${id}`, {
-      headers: {
-        authorization: token,
-      },
-    });
-    return response;
-  } catch (error) {
-    console.log(error);
+export const DeleteFromHistory = createAsyncThunk(
+  "history/deleteVideo", 
+  async (id) => {
+    const token = localStorage.getItem("token");
+    try {
+      const { data } = await axios.delete(`/api/user/history/${id}`, {
+        headers: {
+          authorization: token,
+        },
+      });
+      return data.history;
+    } catch (error) {
+      console.error(error.response);
+    }
   }
-};
+)
 
-export const clearHistory = async () => {
-  const token = localStorage.getItem("token");
-  try {
-    const  response  = await axios.delete(`/api/user/history/all`, {
-      headers: {
-        authorization: token,
-      },
-    });
-    return response;
-  } catch (error) {
-    console.log(error);
+export const ClearAllHistory = createAsyncThunk(
+  "history/clearAll", 
+  async () => {
+    const token = localStorage.getItem("token");
+    try {
+      const { data } = await axios.delete(`/api/user/history/all`, {
+        headers: {
+          authorization: token,
+        },
+      });
+      return data.history;
+    } catch (error) {
+      console.error(error.response);
+    }
   }
-};
+)
+

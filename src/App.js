@@ -13,7 +13,6 @@ import {
   UserProfile,
 } from "./Screen/index";
 import { Routes, Route } from "react-router-dom";
-import MockMan from "mockman-js";
 import PrivateRoute from "./components/Utils/privateRoute";
 
 function App() {
@@ -31,7 +30,6 @@ function App() {
         <Route path="/history" element={<PrivateRoute> <HistoryScreen /> </PrivateRoute>} />
         <Route path="/myPlaylists" element={<PrivateRoute><PlaylistScreen /></PrivateRoute>} />
         <Route path="/myprofile" element={<PrivateRoute><UserProfile /></PrivateRoute>} />
-        <Route path="/mock" element={<MockMan />} />
       </Routes>
     </div>
   );

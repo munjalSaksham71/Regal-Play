@@ -1,20 +1,25 @@
 import { BiListPlus } from "react-icons/bi";
 import { BsFillPlayFill } from "react-icons/bs";
 import SideBar from "../../components/SideBar/SideBar";
-import { useWatchlist } from "../../context";
-import { deleteFromWatchlater } from '../../actions/watchLaterAction'
+import {
+  DeleteFromWatchlater,
+  GetWatchLater,
+} from "../../actions/watchLaterAction";
 import "./WatchLater.css";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { Link } from "react-router-dom";
 
 const WatchLaterScreen = () => {
-  const {
-    watchlistState: { watchListVideos },
-    watchlistDispatch,
-  } = useWatchlist();
+  const dispatch = useDispatch();
 
-  const removeHandler = async (id) => {
-    const { data } = await deleteFromWatchlater(id);
-    watchlistDispatch({type: 'REMOVE_FROM_WATCHLIST', payload: data.watchlater})
-  };
+  const { watchListVideos, watchlaterLoading, watchlaterError } = useSelector(
+    (state) => state.watchlater
+  );
+
+  useEffect(() => {
+    dispatch(GetWatchLater());
+  }, []);
 
   return (
     <div>
@@ -25,6 +30,8 @@ const WatchLaterScreen = () => {
       />
       <div className="main_container flex-column">
         <div className="heading2 center page-title"> Watch Later </div>
+        {watchlaterLoading && <div> Loading..... </div>}
+        {watchlaterError && <div> SomeThing Went Wrong </div>}
         {watchListVideos && (
           <div className="cards flex-row">
             {watchListVideos.length === 0 && (
@@ -32,15 +39,15 @@ const WatchLaterScreen = () => {
             )}
             {watchListVideos.map((video) => (
               <div key={video._id} className="video_card flex-column">
-                <img className="card_image" src={video.thumbnail} />
-                <div className="video_title">{video.title}</div>
-                <div className="video_author">{video.creator}</div>
+                <img className="card_image" src={video?.thumbnail} />
+                <div className="video_title">{video?.title}</div>
+                <div className="video_author">{video?.creator}</div>
                 <div className="video_buttons flex-row">
-                  <button className="btn btn-primary">
+                  <Link to={`/video/${video._id}`} className="btn btn-primary">
                     <BsFillPlayFill className="card_icon" /> Play Now
-                  </button>
+                  </Link>
                   <button
-                    onClick={() => removeHandler(video._id)}
+                    onClick={() => dispatch(DeleteFromWatchlater(video._id))}
                     className="ml-1 btn btn-error"
                   >
                     <BiListPlus className="remove_watchlist-icon" />

@@ -1,10 +1,12 @@
 import "./Categories.css";
 import { truncate } from "../Utils/helper";
 import { Link } from "react-router-dom";
-import { useFilter } from "../../context/index";
+import { useDispatch } from "react-redux";
+import { addCategory } from "../../slices/filterSlice";
 
 const Categories = ({ categories }) => {
-  const { filterDispatch } = useFilter();
+  const dispatch = useDispatch();
+  
   return (
     <div className="flex-column">
       <div className="cards flex-row">
@@ -20,10 +22,7 @@ const Categories = ({ categories }) => {
             <div className="card_buttons mt-2">
               <Link
                 onClick={() =>
-                  filterDispatch({
-                    type: "BY_CATEGORY",
-                    payload: `${category.categoryName}`,
-                  })
+                  dispatch(addCategory(category.categoryName))
                 }
                 to="/videos"
                 className="card_button text-decoration-none"
@@ -35,8 +34,7 @@ const Categories = ({ categories }) => {
         ))}
       </div>
       <Link to="/videos" className="watch_all_button mt-5 text-decoration-none">
-        {" "}
-        Show All Videos{" "}
+        Show All Videos
       </Link>
     </div>
   );

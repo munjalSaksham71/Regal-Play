@@ -1,23 +1,17 @@
 import { BsFillPlayFill, BiListPlus } from "../../components/Utils/icons";
 import SideBar from "../../components/SideBar/SideBar";
-import { usePlaylist } from "../../context";
 import "../WatchLaterScreen/WatchLater.css";
-import { deleteVideoFromPlaylist } from "../../actions/addToPlaylistAction";
+import { DeleteVideoFromPlaylist } from "../../actions/addToPlaylistAction";
 import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 
 const PlaylistScreen = () => {
-  const {
-    playlistState: { playlists },
-    playlistDispatch,
-  } = usePlaylist();
+  const dispatch = useDispatch()
+  const { playlists } = useSelector((state) => state.playlist)
 
   const removeHandler = async (playlist_id, video_id) => {
     try {
-      const data = await deleteVideoFromPlaylist(playlist_id, video_id);
-      playlistDispatch({
-        type: "REMOVE_FROM_PLAYLIST",
-        payload: data.playlist,
-      });
+      dispatch(DeleteVideoFromPlaylist({ playlistId: playlist_id, videoId: video_id}))
     } catch (error) {
       console.log(error);
     }
@@ -29,7 +23,7 @@ const PlaylistScreen = () => {
       <div className="main_container flex-column">
         <div className="heading2 center page-title"> My Playlists </div>
         {playlists.length === 0 && (
-          <h2 className="ml-5 mt-4 heading3"> No Playlist </h2>
+          <h2 className="ml-5 mt-4 heading3"> No Playlists </h2>
         )}
         {playlists.map((playlist) => (
           <div>

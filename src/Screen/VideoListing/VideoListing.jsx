@@ -1,16 +1,21 @@
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { GetVideos } from "../../actions/videoAction";
 import Card from "../../components/Card/Card";
 import SideBar from "../../components/SideBar/SideBar";
-import { useFilter, useVideo } from "../../context/index";
 import "./VideoListing.css";
 
 const VideoListing = () => {
-  const {
-    videoState: { loading, error, videos },
-  } = useVideo();
+  const dispatch = useDispatch();
 
-  const {
-    filterState: { byCategory },
-  } = useFilter();
+  useEffect(() => {
+    dispatch(GetVideos())
+  }, [])
+
+  const { loading, error, videos } = useSelector((state) => state.video)
+
+  const {byCategory} = useSelector((state) => state.filter)
+
 
   const filterVideos = () => {
     let filteredVideos = videos;

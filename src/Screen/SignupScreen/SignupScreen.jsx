@@ -1,13 +1,16 @@
 import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import { useAuth } from "../../context/index";
+import { Signup } from "../../actions/authAction";
 import "./SignupScreen.css";
 
 const SignupScreen = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("")
-    const { user, signupUser } = useAuth();
+
+    const dispatch = useDispatch();
+    const { user } = useSelector((state) => state.auth)
 
     const navigate = useNavigate()
 
@@ -15,7 +18,7 @@ const SignupScreen = () => {
         e.preventDefault();
         if(password === confirmPassword){
             try {
-                await signupUser(email, password);
+                dispatch(Signup({email, password}));
             } catch (error) {
                 console.log(error.message)
             }

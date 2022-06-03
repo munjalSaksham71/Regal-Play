@@ -5,29 +5,23 @@ import SideBar from "../../components/SideBar/SideBar";
 import { useParams } from "react-router-dom";
 import "./VideoPreview.css";
 import { AiFillLike, AiOutlineLike , MdPlaylistAdd } from "../../components/Utils/icons";
-import { useHistory, useLikes, usePlaylist, useWatchlist } from "../../context";
 import CreatePlaylist from "../../components/CreatePlaylist/CreatePlaylist";
-import { addToHistory } from "../../actions/historyAction";
-import { addToWatchlater, deleteFromWatchlater } from "../../actions/watchLaterAction";
-import { addToLiked, deleteFromLiked } from "../../actions/likeVideoAction";
+import { AddToLikes, DeleteFromLikes } from "../../actions/likeVideoAction";
+import { useDispatch, useSelector } from "react-redux";
+import { AddToWatchLater, DeleteFromWatchlater } from "../../actions/watchLaterAction";
+import { AddToHistory } from "../../actions/historyAction";
+import { openModal } from "../../slices/playlistSlice";
+
 
 const VideoPreview = () => {
   const [video, setVideo] = useState({});
   const { id } = useParams();
 
-  const {
-    likeState: { likedVideos },
-    likeDispatch,
-  } = useLikes();
-
-  const {
-    watchlistState: { watchListVideos },
-    watchlistDispatch,
-  } = useWatchlist();
-
-  const { historyDispatch, historyState: {historyVideos} } = useHistory();
-
-  const { isModalOpen, setIsModalOpen } = usePlaylist();
+  const dispatch = useDispatch();
+  const { watchListVideos } = useSelector((state) => state.watchlater) 
+  const { historyVideos } = useSelector((state) => state.history)
+  const { likedVideos } = useSelector((state) => state.likes)
+  const { isModalOpen } = useSelector((state) => state.playlist)
 
   useEffect(() => {
     (async () => {
@@ -35,8 +29,7 @@ const VideoPreview = () => {
         const { data } = await axios.get(`/api/video/${id}`);
         setVideo(data.video);
         if(!historyVideos.includes(data.video)){
-          const response  = await addToHistory(data.video);
-          historyDispatch({ type: "ADD_TO_HISTORY", payload: response.data.history });
+          dispatch(AddToHistory(data.video))
         }
       } catch (error) {
         console.log(error);
@@ -45,28 +38,8 @@ const VideoPreview = () => {
   }, []);
 
   const playlistHandler = () => {
-    setIsModalOpen(true);
+    dispatch(openModal())
   };
-
-  const removeFromWatchlistHandler = async (id) => {
-    const { data } = await deleteFromWatchlater(id);
-    watchlistDispatch({type: 'REMOVE_FROM_WATCHLIST', payload: data.watchlater})
-  }
-
-  const addToWatchlistHandler = async (video) => {
-    const { data } = await addToWatchlater(video);
-    watchlistDispatch({type: 'ADD_TO_WATCHLIST', payload: data.watchlater})
-  }
-
-  const removeFromLikedVideo = async (id) => {
-    const { data } = await deleteFromLiked(id);
-    likeDispatch({type: 'REMOVE_FROM_LIKED', payload: data.likes})
-  }
-
-  const addToLikedVideo = async (video) => {
-    const { data } = await addToLiked(video);
-    likeDispatch({type: 'ADD_TO_LIKED', payload: data.likes})
-  }
 
   return (
     <div className="flex-row">
@@ -82,7 +55,7 @@ const VideoPreview = () => {
           {likedVideos.some((v) => v._id === video._id) ? (
             <div
               onClick={() =>
-                removeFromLikedVideo(video._id)
+                dispatch(DeleteFromLikes(video._id))
               }
             >
               <AiFillLike className="icon"/>
@@ -90,7 +63,7 @@ const VideoPreview = () => {
           ) : (
             <div
               onClick={() =>
-                addToLikedVideo(video)
+                dispatch(AddToLikes(video))
               }
             >
               <AiOutlineLike  className="icon"/>
@@ -100,7 +73,7 @@ const VideoPreview = () => {
           {watchListVideos.some((v) => v._id === video._id) ? (
             <div
               className="btn btn-error ml-auto"
-              onClick={() => removeFromWatchlistHandler(video._id)}
+              onClick={() => dispatch(DeleteFromWatchlater(video._id))}
             >
               Remove From Watchlist
             </div>
@@ -108,7 +81,7 @@ const VideoPreview = () => {
             <div
               className="btn btn-primary ml-auto"
               aria-disabled={true}
-              onClick={() => addToWatchlistHandler(video)}
+              onClick={() => dispatch(AddToWatchLater(video))}
             >
               Add to watchlist
             </div>

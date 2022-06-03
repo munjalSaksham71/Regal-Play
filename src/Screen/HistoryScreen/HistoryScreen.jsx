@@ -1,32 +1,22 @@
 import { BiListPlus } from "react-icons/bi";
 import { BsFillPlayFill } from "react-icons/bs";
-import { clearHistory, deleteFromHistory } from "../../actions/historyAction";
+import { useDispatch, useSelector } from "react-redux";
+import { ClearAllHistory, DeleteFromHistory } from "../../actions/historyAction";
 import SideBar from "../../components/SideBar/SideBar";
-import { useHistory } from "../../context";
 import "../WatchLaterScreen/WatchLater.css";
 
 const HistoryScreen = () => {
-  const {
-    historyState: { historyVideos },
-    historyDispatch,
-  } = useHistory();
 
-  const removeHandler = async (id) => {
-    const {data} = await deleteFromHistory(id);
-    await historyDispatch({ type: "REMOVE_FROM_HISTORY", payload: data.history });
-  };
-
-  const clearHistroyHandler = async () => {
-    const { data } = await clearHistory();
-    historyDispatch({type: 'CLEAR_HISTORY', payload: data.history})
-  }
+  const { historyVideos, historyLoading } = useSelector((state) => state.history)
+  const dispatch = useDispatch();
 
   return (
     <div>
       <SideBar pageWrapId={'page-wrap'} outerContainerId={'outer-container'} />
-      <div className="clear_history_btn btn" onClick={clearHistroyHandler}>CLEAR&nbsp;ALL</div>
+      <div className="clear_history_btn btn" onClick={() => dispatch(ClearAllHistory())}>CLEAR&nbsp;ALL</div>
       <div className="main_container flex-column">
         <div className="heading2 center page-title"> History </div>
+        {historyLoading && <div>Loading...</div>}
         {historyVideos && (
           <div className="cards flex-row">
             {historyVideos.length === 0 && (
@@ -42,7 +32,7 @@ const HistoryScreen = () => {
                     <BsFillPlayFill className="card_icon" /> Play Now
                   </button>
                   <button
-                    onClick={() => removeHandler(video._id)}
+                    onClick={() => dispatch(DeleteFromHistory(video._id))}
                     className="ml-1 btn btn-error"
                   >
                     <BiListPlus className="remove_watchlist-icon" />

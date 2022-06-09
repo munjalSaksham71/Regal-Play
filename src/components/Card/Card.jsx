@@ -13,7 +13,6 @@ const Card = ({ video }) => {
   const addToWatchlist = () => {
     try {
       dispatch(AddToWatchLater(video))
-      console.log(video);
     } catch (error) {
       console.log(error.response)
     }

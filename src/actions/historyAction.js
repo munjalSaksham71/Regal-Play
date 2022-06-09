@@ -3,6 +3,9 @@ import axios from "axios";
 
 export const GetHistory = createAsyncThunk("history/get", async () => {
   const token = localStorage.getItem("token");
+  if(!token) {
+    throw new Error(alert("Please Login First"))
+  }
   try {
     const { data } = await axios.get("/api/user/history", {
       headers: {
@@ -18,6 +21,9 @@ export const GetHistory = createAsyncThunk("history/get", async () => {
 export const AddToHistory = createAsyncThunk(
   "history/addVideo", 
   async ( video ) => {
+    if(!token) {
+      throw new Error(alert("Please Login First"))
+    }
     const token = localStorage.getItem("token");
     try {
       const { data } = await axios.post("/api/user/history", { video }, {
@@ -36,6 +42,9 @@ export const DeleteFromHistory = createAsyncThunk(
   "history/deleteVideo", 
   async (id) => {
     const token = localStorage.getItem("token");
+    if(!token) {
+      throw new Error(alert("Please Login First"))
+    }
     try {
       const { data } = await axios.delete(`/api/user/history/${id}`, {
         headers: {

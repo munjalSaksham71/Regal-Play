@@ -23,7 +23,7 @@ const SignupScreen = () => {
                 console.log(error.message)
             }
         } else {
-            console.log("Password and confirm password fields didnt match.")
+            alert("Password and confirm password fields didnt match.")
         }
     }
 

@@ -16,21 +16,21 @@ const LoginScreen = () => {
     const submitHandler = async (e) => {
         e.preventDefault();
         if(!email || !password ){
-          console.log("Please enter both the fields");
+          return alert("Please enter both the fields");
         }
         try {
             dispatch(Login({email, password}));
         } catch (error) {
-            console.log(error.message)
+            alert("User Credential Didn't Match")
         }
     }
 
     const guestLoginHandler = async (e) => {
       e.preventDefault();
       try {
-          dispatch(Login({ email: "adarshbalika@gmail.com", password: "adarshBalika123"}));
+          dispatch(Login({ email: "johndoe@gmail.com", password: "johnDoe123"}));
       } catch (error) {
-          console.log("Something went wrong.")
+          alert("Something went wrong.")
       }
     }
 

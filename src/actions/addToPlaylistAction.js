@@ -3,6 +3,9 @@ import axios from "axios";
 
 export const GetPlaylist = createAsyncThunk("playlist/getPlaylist", async () => {
   const token = localStorage.getItem("token");
+  if(!token) {
+    throw new Error(alert("Please Login First"))
+  }
   try {
     const { data } = await axios.get("/api/user/playlists", {
       headers: {
@@ -19,6 +22,9 @@ export const AddPlaylist = createAsyncThunk(
   "playlist/addPlaylist",
   async (playlist) => {
     const token = localStorage.getItem("token");
+    if(!token) {
+      throw new Error(alert("Please Login First"))
+    }
     try {
       const { data } = await axios.post(
         "/api/user/playlists",
@@ -40,6 +46,9 @@ export const DeletePlaylist = createAsyncThunk(
   "playlist/deletePlaylist",
   async (id) => {
     const token = localStorage.getItem("token");
+    if(!token) {
+      throw new Error(alert("Please Login First"))
+    }
     try {
       const { data } = await axios.delete(`/api/user/playlists/${id}`, {
         headers: {
@@ -57,6 +66,9 @@ export const AddVideoToPlaylist = createAsyncThunk(
   "playlist/addVideo",
   async ({playlistId, video}) => {
     const token = localStorage.getItem("token");
+    if(!token) {
+      throw new Error(alert("Please Login First"))
+    }
     try {
       const { data } = await axios.post(
         `/api/user/playlists/${playlistId}`,
@@ -81,6 +93,9 @@ export const DeleteVideoFromPlaylist = createAsyncThunk(
   "playlist/deleteVideo",
   async ({playlistId, videoId}) => {
     const token = localStorage.getItem("token");
+    if(!token) {
+      throw new Error(alert("Please Login First"))
+    }
     try {
       const { data } = await axios.delete(
         `/api/user/playlists/${playlistId}/${videoId}`,

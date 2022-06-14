@@ -19,6 +19,9 @@ export const AddToWatchLater = createAsyncThunk(
   "watchlater/addVideo", 
   async ( video ) => {
     const token = localStorage.getItem("token");
+    if(!token) {
+      throw new Error(alert("Please Login First"))
+    }
     try {
       const { data } = await axios.post("/api/user/watchlater", { video }, {
         headers: {
@@ -27,7 +30,7 @@ export const AddToWatchLater = createAsyncThunk(
       });
       return data.watchlater;
     } catch (error) {
-      console.error(error.response);
+      alert("something went wrong!!");
     }
   }
 )
@@ -36,6 +39,9 @@ export const DeleteFromWatchlater = createAsyncThunk(
   "watchlater/deleteVideo", 
   async (id) => {
     const token = localStorage.getItem("token");
+    if(!token) {
+      throw new Error(alert("Please Login First"))
+    }
     try {
       const { data } = await axios.delete(`/api/user/watchlater/${id}`, {
         headers: {

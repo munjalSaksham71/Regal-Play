@@ -22,7 +22,7 @@ function App() {
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/videos" element={<VideoListing />} />
-        <Route path="/video/:id" element={<VideoPreview />} />
+        <Route path="/video/:id" element={<PrivateRoute><VideoPreview /></PrivateRoute>} />
         <Route path="/login" element={<LoginScreen />} />
         <Route path="/signup" element={<SignupScreen />} />
         <Route path="/watch-later" element={<PrivateRoute><WatchLaterScreen /></PrivateRoute>} />

@@ -21,10 +21,10 @@ export const GetHistory = createAsyncThunk("history/get", async () => {
 export const AddToHistory = createAsyncThunk(
   "history/addVideo", 
   async ( video ) => {
+    const token = localStorage.getItem("token");
     if(!token) {
       throw new Error(alert("Please Login First"))
     }
-    const token = localStorage.getItem("token");
     try {
       const { data } = await axios.post("/api/user/history", { video }, {
         headers: {

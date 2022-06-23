@@ -5,7 +5,8 @@ import {
   AiFillHome,
   AiOutlineHistory,
   AiFillLike,
-  AiOutlineLike
+  AiOutlineLike,
+  AiFillDelete
 } from "react-icons/ai";
 import { MdPlaylistAdd } from "react-icons/md";
 
@@ -22,5 +23,6 @@ export {
   AiFillLike,
   MdPlaylistAdd,
   BsFillPlayFill,
-  AiOutlineLike
+  AiOutlineLike,
+  AiFillDelete
 };

@@ -16,6 +16,9 @@ const SignupScreen = () => {
 
     const submitHandler = async (e) => {
         e.preventDefault();
+        if(!email || !password || !confirmPassword) {
+          throw new Error(alert("Please Enter all fields in form"))
+        }
         if(password === confirmPassword){
             try {
                 dispatch(Signup({email, password}));

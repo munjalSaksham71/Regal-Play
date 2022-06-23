@@ -32,19 +32,6 @@ const SideBar = ({ filterShown = false }) => {
           <AiFillHome /> Home
         </Link>
         <hr className="mt-3" />
-        <Link to="/history" className="list_item flex-row  p-3">
-          <AiOutlineHistory /> History
-        </Link>
-        <Link to="/watch-later" className="list_item flex-row  p-3">
-          <BiStopwatch /> Watch Later
-        </Link>
-        <Link to="/likes" className="list_item flex-row  p-3">
-          <AiFillLike /> Liked Video
-        </Link>
-        <Link to="/myPlaylists" className="list_item flex-row  p-3">
-          <MdPlaylistAdd /> My Playlist
-        </Link>
-        <hr className="mt-2" />
         {filterShown && (
           <div className="flex-column filter-item">
             <div className="flex-row filter_title">
@@ -86,6 +73,19 @@ const SideBar = ({ filterShown = false }) => {
             <hr className="mt-2" />
           </div>
         )}
+        <Link to="/history" className="list_item flex-row  p-3">
+          <AiOutlineHistory /> History
+        </Link>
+        <Link to="/watch-later" className="list_item flex-row  p-3">
+          <BiStopwatch /> Watch Later
+        </Link>
+        <Link to="/likes" className="list_item flex-row  p-3">
+          <AiFillLike /> Liked Video
+        </Link>
+        <Link to="/myPlaylists" className="list_item flex-row  p-3">
+          <MdPlaylistAdd /> My Playlist
+        </Link>
+        <hr className="mt-2" />
         <Link to="/myprofile" className="list_item flex-row  p-3">
           <AiOutlineUser /> User Profile
         </Link>

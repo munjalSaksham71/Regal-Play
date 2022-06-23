@@ -1,6 +1,6 @@
 .video-desc {
   width: 15rem;
-  padding-left: 5rem;
+  padding-left: 2rem;
 }
 
 .video_player {
@@ -29,7 +29,19 @@
 
 @media screen and (max-width: 815px) {
   .video_player {
-    width: 20rem;
-    height: 20rem;
+    width: 27rem;
+    height: 21rem;
+  }
+}
+
+@media screen and (max-width: 743px) {
+  .video-desc {
+    width: 100%;
+    padding-right: 3rem;
+  }
+  .video_player {
+    width: 31rem;
+    height: 24rem;
+    padding-left: 2rem;
   }
 }

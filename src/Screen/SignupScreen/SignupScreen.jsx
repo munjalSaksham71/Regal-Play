@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { Signup } from "../../actions/authAction";
 import "./SignupScreen.css";
+import validator from 'validator';
 
 const SignupScreen = () => {
     const [email, setEmail] = useState("");
@@ -16,6 +17,12 @@ const SignupScreen = () => {
 
     const submitHandler = async (e) => {
         e.preventDefault();
+        if(!email || !password || !confirmPassword) {
+          return alert("Please Enter all fields in form")
+        }
+        if(!validator.isEmail(email)) {
+          return alert("Re-check your email format");
+        }
         if(password === confirmPassword){
             try {
                 dispatch(Signup({email, password}));

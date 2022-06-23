@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import "./LoginScreen.css";
 import { useDispatch, useSelector } from "react-redux";
 import { Login } from "../../actions/authAction";
+import validator from 'validator';
 
 const LoginScreen = () => {
     const [email, setEmail] = useState("");
@@ -17,6 +18,9 @@ const LoginScreen = () => {
         e.preventDefault();
         if(!email || !password ){
           return alert("Please enter both the fields");
+        }
+        if(!validator.isEmail(email)) {
+          return alert("Re-check your email format");
         }
         try {
             dispatch(Login({email, password}));

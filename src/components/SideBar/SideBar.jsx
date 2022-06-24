@@ -8,20 +8,20 @@ import {
   AiOutlineUser,
 } from "../Utils/icons";
 import { Link } from "react-router-dom";
-import { useFilter } from "../../context/index";
 import { slide as Menu } from "react-burger-menu";
+import { useDispatch, useSelector } from "react-redux";
+import { addCategory, removeCategory, clearAllCategory } from '../../slices/filterSlice'
 
 const SideBar = ({ filterShown = false }) => {
-  const {
-    filterState: { byCategory },
-    filterDispatch,
-  } = useFilter();
+  const { byCategory } = useSelector((state) => state.filter);
+  const dispatch = useDispatch();
+
 
   const filterHandler = (e, category) => {
     if (e.target.checked) {
-      filterDispatch({ type: "BY_CATEGORY", payload: category });
+      dispatch(addCategory(category))
     } else {
-      filterDispatch({ type: "REMOVE_CATEGORY", payload: category });
+      dispatch(removeCategory(category))
     }
   };
 
@@ -32,26 +32,13 @@ const SideBar = ({ filterShown = false }) => {
           <AiFillHome /> Home
         </Link>
         <hr className="mt-3" />
-        <Link to="/history" className="list_item flex-row  p-3">
-          <AiOutlineHistory /> History
-        </Link>
-        <Link to="/watch-later" className="list_item flex-row  p-3">
-          <BiStopwatch /> Watch Later
-        </Link>
-        <Link to="/likes" className="list_item flex-row  p-3">
-          <AiFillLike /> Liked Video
-        </Link>
-        <Link to="/myPlaylists" className="list_item flex-row  p-3">
-          <MdPlaylistAdd /> My Playlist
-        </Link>
-        <hr className="mt-2" />
         {filterShown && (
           <div className="flex-column filter-item">
             <div className="flex-row filter_title">
               <h2 className="heading3 filter_title pl-3 pt-2">Filter</h2>
               <div
                 className="clear_btn"
-                onClick={() => filterDispatch({ type: "CLEAR_ALL" })}
+                onClick={() => dispatch(clearAllCategory())}
               >
                 Clear All
               </div>
@@ -86,6 +73,19 @@ const SideBar = ({ filterShown = false }) => {
             <hr className="mt-2" />
           </div>
         )}
+        <Link to="/history" className="list_item flex-row  p-3">
+          <AiOutlineHistory /> History
+        </Link>
+        <Link to="/watch-later" className="list_item flex-row  p-3">
+          <BiStopwatch /> Watch Later
+        </Link>
+        <Link to="/likes" className="list_item flex-row  p-3">
+          <AiFillLike /> Liked Video
+        </Link>
+        <Link to="/myPlaylists" className="list_item flex-row  p-3">
+          <MdPlaylistAdd /> My Playlist
+        </Link>
+        <hr className="mt-2" />
         <Link to="/myprofile" className="list_item flex-row  p-3">
           <AiOutlineUser /> User Profile
         </Link>

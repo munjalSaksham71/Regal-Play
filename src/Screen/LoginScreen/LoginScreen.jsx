@@ -1,33 +1,40 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./LoginScreen.css";
-import { useAuth } from '../../context/index';
+import { useDispatch, useSelector } from "react-redux";
+import { Login } from "../../actions/authAction";
+import validator from 'validator';
 
 const LoginScreen = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const { user, loginUser } = useAuth();
+
+    const dispatch = useDispatch();
+    const { user } = useSelector((state) => state.auth)
 
     const navigate = useNavigate()
 
     const submitHandler = async (e) => {
         e.preventDefault();
         if(!email || !password ){
-          console.log("Please enter both the fields");
+          return alert("Please enter both the fields");
+        }
+        if(!validator.isEmail(email)) {
+          return alert("Re-check your email format");
         }
         try {
-            await loginUser(email, password);
+            dispatch(Login({email, password}));
         } catch (error) {
-            console.log(error.message)
+            alert("User Credential Didn't Match")
         }
     }
 
     const guestLoginHandler = async (e) => {
       e.preventDefault();
       try {
-          await loginUser("adarshbalika@gmail.com", "adarshBalika123");
+          dispatch(Login({ email: "johndoe@gmail.com", password: "johnDoe123"}));
       } catch (error) {
-          console.log("Something went wrong.")
+          alert("Something went wrong.")
       }
     }
 

@@ -1,26 +1,36 @@
 import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import { useAuth } from "../../context/index";
+import { Signup } from "../../actions/authAction";
 import "./SignupScreen.css";
+import validator from 'validator';
 
 const SignupScreen = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("")
-    const { user, signupUser } = useAuth();
+
+    const dispatch = useDispatch();
+    const { user } = useSelector((state) => state.auth)
 
     const navigate = useNavigate()
 
     const submitHandler = async (e) => {
         e.preventDefault();
+        if(!email || !password || !confirmPassword) {
+          return alert("Please Enter all fields in form")
+        }
+        if(!validator.isEmail(email)) {
+          return alert("Re-check your email format");
+        }
         if(password === confirmPassword){
             try {
-                await signupUser(email, password);
+                dispatch(Signup({email, password}));
             } catch (error) {
                 console.log(error.message)
             }
         } else {
-            console.log("Password and confirm password fields didnt match.")
+            alert("Password and confirm password fields didnt match.")
         }
     }
 

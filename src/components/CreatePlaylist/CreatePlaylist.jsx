@@ -1,30 +1,26 @@
 import { useState } from "react";
-import { usePlaylist } from "../../context";
 import {
-  addVideoToPlaylist,
-  createNewPlaylist,
-  deletePlaylist,
-  deleteVideoFromPlaylist,
+  AddPlaylist,
+  AddVideoToPlaylist,
+  DeletePlaylist,
+  DeleteVideoFromPlaylist,
 } from "../../actions/addToPlaylistAction";
 import "./CreatePlaylist.css";
+import { useDispatch, useSelector } from "react-redux";
+import { closeModal } from "../../slices/playlistSlice";
 
 const CreatePlaylist = ({ playlistVideo }) => {
   const [playlistData, setPlaylistData] = useState({
     title: "",
     description: "",
   });
-  const {
-    playlistState: { playlists },
-    playlistDispatch,
-    setIsModalOpen,
-  } = usePlaylist();
 
-  console.log(playlists);
+  const { playlists } = useSelector((state) => state.playlist)
+  const dispatch = useDispatch();
 
   const handleCreatePlaylist = async () => {
     try {
-      const data = await createNewPlaylist(playlistData);
-      playlistDispatch({ type: "CREATE_PLAYLIST", payload: data.playlists });
+      dispatch(AddPlaylist(playlistData))
       setPlaylistData({ title: "", description: "" });
     } catch (error) {
       console.log(error);
@@ -33,31 +29,9 @@ const CreatePlaylist = ({ playlistVideo }) => {
 
   const deletePlaylistHandler = async (id) => {
     try {
-      const data = await deletePlaylist(id);
-      playlistDispatch({ type: "DELETE_PLAYLIST", payload: data.playlists });
+      dispatch(DeletePlaylist(id))
     } catch (error) {
         console.log(error);
-    }
-  };
-
-  const addToPlaylist = async (id, video) => {
-    try {
-      const data = await addVideoToPlaylist(id, video);
-      playlistDispatch({ type: "ADD_TO_PLAYLIST", payload: data.playlist });
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  const deleteFromPlaylist = async (id, video_id) => {
-    try {
-      const data = await deleteVideoFromPlaylist(id, video_id);
-      playlistDispatch({
-        type: "REMOVE_FROM_PLAYLIST",
-        payload: data.playlist,
-      });
-    } catch (error) {
-      console.log(error);
     }
   };
 
@@ -78,9 +52,9 @@ const CreatePlaylist = ({ playlistVideo }) => {
                   })}
                   onChange={(e) => {
                     if (e.target.checked) {
-                      addToPlaylist(playlist._id, playlistVideo);
+                      dispatch(AddVideoToPlaylist({ playlistId: playlist._id, video:playlistVideo}));
                     } else {
-                      deleteFromPlaylist(playlist._id, playlistVideo._id);
+                      dispatch(DeleteVideoFromPlaylist({ playlistId: playlist._id, videoId: playlistVideo._id}));
                     }
                   }}
                 />
@@ -127,7 +101,7 @@ const CreatePlaylist = ({ playlistVideo }) => {
           </button>
           <button
             className="btn btn-error mt-2 ml-3"
-            onClick={() => setIsModalOpen(false)}
+            onClick={() => dispatch(closeModal())}
           >
             Close
           </button>

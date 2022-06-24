@@ -28,7 +28,8 @@ const VideoPreview = () => {
       try {
         const { data } = await axios.get(`/api/video/${id}`);
         setVideo(data.video);
-        if(!historyVideos.includes(data.video)){
+        if(!historyVideos.some(v => v.id === data.video.id)){
+          console.log("History Effect: ", historyVideos.includes(data.video))
           dispatch(AddToHistory(data.video))
         }
       } catch (error) {
